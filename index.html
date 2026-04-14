@@ -10,11 +10,15 @@
       /* Mobile fixes for city pages — list view */
       @media (max-width: 720px) {
         .fifty-list-item {
-          grid-template-columns: 48px 1fr !important;
+          grid-template-columns: 1fr !important;
           padding: 28px 0 !important;
-          gap: 12px !important;
+          gap: 16px !important;
         }
-        .fifty-list-thumb { display: none !important; }
+        .fifty-list-thumb {
+          order: -1;
+          width: 100% !important;
+          height: 220px !important;
+        }
         .fifty-list-content { padding-right: 0 !important; }
       }
       @media (max-width: 640px) {

@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import PHOTOS from "./src/photos.json";
+
+const CITY_PHOTOS = PHOTOS["denver"] || {};
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -361,11 +364,11 @@ const ENTRIES = [
   },
   {
     id: 33,
-    name: "Mondo Market",
+    name: "Topo Designs",
     category: "Shop",
     neighborhood: "RiNo",
-    description: "A curated provisions shop in RiNo stocking the kind of pantry staples that make home cooking feel elevated. Small-batch olive oils, house-made pasta, local cheeses, natural wines, and imported tinned fish arranged with a designer's eye. It's part grocery, part gift shop, and entirely the kind of place that makes you reconsider what's in your kitchen.",
-    signature: "The tinned fish wall is a thing of beauty. Grab a tin, a baguette, and a bottle of something cold for an instant picnic.",
+    description: "Denver's homegrown outdoor brand has gone global, but the Larimer Street flagship still feels like the founding shop — unpretentious, built for people who actually use their gear. The bags and packs are the specialty (the Mountain Pack is a Denver classic), but the flagship also stocks collabs you won't find online and a tight edit of apparel. It's the uniform of the Front Range.",
+    signature: "The seconds rack in the back is where their bags go at 30% off — minor cosmetic flaws, same lifetime warranty. Check their events calendar for group runs and rides with local ambassadors.",
     action: "Get Directions",
     actionType: "directions",
     image: null,
@@ -460,11 +463,11 @@ const ENTRIES = [
   },
   {
     id: 42,
-    name: "Ondine",
+    name: "Potager",
     category: "Eat",
     neighborhood: "Capitol Hill",
-    description: "A French-leaning neighborhood restaurant with a wood-burning hearth and a wine list that punches well above its modest size. The menu changes often, driven by what's good at the market, and the cooking has a confidence that comes from restraint rather than spectacle. It's the kind of restaurant every neighborhood deserves but few actually get.",
-    signature: "The roast chicken. Always the roast chicken. It's the dish that tells you everything about a kitchen.",
+    description: "A Capitol Hill market-driven restaurant that's been quietly turning out some of Denver's most honest cooking since 1997. The menu changes weekly — sometimes daily — driven entirely by what Chef Teri Rippeto finds at the farmers market that morning. The wood-fired hearth in the open kitchen does most of the heavy lifting, and the wine list is one of the smartest in the city.",
+    signature: "The wood-fired whole fish when it's on the menu. Ask what's new from the market — the answer tells you what you should order.",
     action: "Reserve",
     actionType: "reserve",
     image: null,
@@ -604,7 +607,34 @@ const ListIcon = ({ active }) => (
 
 // ─── Image Placeholders (using colored SVGs) ────────────────────────────────
 
-const PlaceholderImage = ({ index, size = "full" }) => {
+const PlaceholderImage = ({ index, size = "full", photo }) => {
+  if (photo?.src) {
+    return (
+      <div style={{ width: "100%", height: "100%", position: "relative", overflow: "hidden", backgroundColor: "#eee" }}>
+        <img
+          src={photo.src}
+          alt=""
+          loading="lazy"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+        {photo.credit && (
+          <div style={{
+            position: "absolute",
+            bottom: 4,
+            right: 6,
+            fontSize: 9,
+            color: "rgba(255,255,255,0.85)",
+            textShadow: "0 1px 2px rgba(0,0,0,0.7)",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+            letterSpacing: 0.3,
+            pointerEvents: "none",
+          }}>
+            Photo: {photo.credit}
+          </div>
+        )}
+      </div>
+    );
+  }
   const palettes = [
     { bg: "#C4A882", accent: "#A68B6B" },
     { bg: "#8B9DAF", accent: "#6E839A" },
@@ -883,7 +913,7 @@ const ListEntry = ({ entry, index }) => {
         overflow: "hidden",
         flexShrink: 0,
       }}>
-        <PlaceholderImage index={index} size="thumb" />
+        <PlaceholderImage index={index} size="thumb" photo={CITY_PHOTOS[entry.id]} />
       </div>
     </article>
   );
@@ -907,7 +937,7 @@ const GridEntry = ({ entry, index }) => {
     >
       {/* Image */}
       <div style={{ width: "100%", height: 200, position: "relative" }}>
-        <PlaceholderImage index={index} />
+        <PlaceholderImage index={index} photo={CITY_PHOTOS[entry.id]} />
         {/* Number overlay */}
         <div style={{
           position: "absolute", top: 16, left: 16,

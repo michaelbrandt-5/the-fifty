@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import PHOTOS from "./src/photos.json";
+
+const CITY_PHOTOS = PHOTOS["san-francisco"] || {};
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const CATEGORIES = ["All", "Eat", "Drink", "Coffee", "Stay", "Experience", "Shop"];
-const NEIGHBORHOODS = ["All Neighborhoods", "Mission District", "Hayes Valley", "North Beach", "Chinatown", "Nob Hill", "Pacific Heights", "Inner Sunset", "Dogpatch", "Noe Valley", "SoMa"];
+const NEIGHBORHOODS = ["All Neighborhoods", "Mission District", "Hayes Valley", "NoPa", "North Beach", "Chinatown", "Nob Hill", "Pacific Heights", "Inner Sunset", "Dogpatch", "Noe Valley", "SoMa"];
 
 const ENTRIES = [
   {
@@ -198,7 +201,7 @@ const ENTRIES = [
     id: 18,
     name: "Nopa",
     category: "Eat",
-    neighborhood: "Hayes Valley",
+    neighborhood: "NoPa",
     description: "A wood-fired neighborhood restaurant on Divisadero that's been quietly essential since 2006. The organic, wood-oven cooking turns simple ingredients into something that tastes like the best version of itself — a pork chop, a flatbread, a plate of vegetables that makes you reconsider vegetables. The late-night kitchen, open until 1am, is a godsend in a city that used to shut down early.",
     signature: "The wood-oven-roasted pork chop with apple and radicchio. Go after 10pm on a weeknight when the room loosens up.",
     action: "Reserve",
@@ -504,11 +507,11 @@ const ENTRIES = [
   },
   {
     id: 46,
-    name: "Bar Agricole",
+    name: "House of Shields",
     category: "Drink",
     neighborhood: "SoMa",
-    description: "A cocktail bar that doubles as an architectural landmark — the SoMa space won an AIA award, and the concrete-and-glass room fills with afternoon light in a way that makes every drink feel like an occasion. The cocktails are spirit-forward and precisely built, the seasonal menu changes with what's at the farmers market, and the brunch is one of the most civilized in the city.",
-    signature: "The house daiquiri is a masterclass in simplicity. Sit by the window in the afternoon when the light turns the concrete gold.",
+    description: "A 1908 saloon across from the Palace Hotel that somehow never got polished into a theme bar. The tin ceiling is original, the mahogany bar has been standing longer than most of the city, and the bartenders pour proper cocktails without a lecture. It's SF bar history you can drink in.",
+    signature: "Order a Sazerac and sit at the bar. Ask about the statues in the wall niches — there's a legend involving a body once hidden there, and someone will tell it to you.",
     action: "Get Directions",
     actionType: "directions",
     image: null,
@@ -526,11 +529,11 @@ const ENTRIES = [
   },
   {
     id: 48,
-    name: "Fog City News",
+    name: "Alexander Book Company",
     category: "Shop",
     neighborhood: "SoMa",
-    description: "A tiny newsstand and chocolate shop near the Embarcadero that stocks over 200 single-origin chocolate bars from around the world alongside an improbably deep magazine selection. Owner Adam Smith can talk chocolate with the authority of a sommelier and will guide you to bars you never knew existed. It's a shop built entirely on passion and expertise.",
-    signature: "Tell Adam what flavors you like and let him build you a three-bar tasting. The magazine wall is worth browsing too — he stocks titles you won't find anywhere else in the city.",
+    description: "Three floors of independent bookselling on 2nd Street that's survived downtown's every transformation for over 30 years. The selection is deep and sharp — serious literature on one floor, children's and art on another — and the staff actually reads the books they recommend. In a neighborhood overrun by chains and tech offices, it's a reminder of what retail used to feel like.",
+    signature: "The staff picks shelf near the front door is always worth a look. If you have a specific book in mind, they'll find it or order it — the kind of service most bookstores forgot how to do.",
     action: "Get Directions",
     actionType: "directions",
     image: null,
@@ -604,7 +607,34 @@ const ListIcon = ({ active }) => (
 
 // ─── Image Placeholders (using colored SVGs) ────────────────────────────────
 
-const PlaceholderImage = ({ index, size = "full" }) => {
+const PlaceholderImage = ({ index, size = "full", photo }) => {
+  if (photo?.src) {
+    return (
+      <div style={{ width: "100%", height: "100%", position: "relative", overflow: "hidden", backgroundColor: "#eee" }}>
+        <img
+          src={photo.src}
+          alt=""
+          loading="lazy"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+        {photo.credit && (
+          <div style={{
+            position: "absolute",
+            bottom: 4,
+            right: 6,
+            fontSize: 9,
+            color: "rgba(255,255,255,0.85)",
+            textShadow: "0 1px 2px rgba(0,0,0,0.7)",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+            letterSpacing: 0.3,
+            pointerEvents: "none",
+          }}>
+            Photo: {photo.credit}
+          </div>
+        )}
+      </div>
+    );
+  }
   const palettes = [
     { bg: "#C4A882", accent: "#A68B6B" },
     { bg: "#8B9DAF", accent: "#6E839A" },
@@ -883,7 +913,7 @@ const ListEntry = ({ entry, index }) => {
         overflow: "hidden",
         flexShrink: 0,
       }}>
-        <PlaceholderImage index={index} size="thumb" />
+        <PlaceholderImage index={index} size="thumb" photo={CITY_PHOTOS[entry.id]} />
       </div>
     </article>
   );
@@ -907,7 +937,7 @@ const GridEntry = ({ entry, index }) => {
     >
       {/* Image */}
       <div style={{ width: "100%", height: 200, position: "relative" }}>
-        <PlaceholderImage index={index} />
+        <PlaceholderImage index={index} photo={CITY_PHOTOS[entry.id]} />
         {/* Number overlay */}
         <div style={{
           position: "absolute", top: 16, left: 16,

@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import PHOTOS from "./src/photos.json";
+
+const CITY_PHOTOS = PHOTOS.austin || {};
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -504,11 +507,11 @@ const ENTRIES = [
   },
   {
     id: 46,
-    name: "Parts & Labour",
+    name: "Nannie Inez",
     category: "Shop",
     neighborhood: "East Austin",
-    description: "A design shop that stocks the kind of objects you see in magazines and actually want to own. Think ceramics from Texas makers, Japanese kitchen knives, small-batch candles, and perfectly curated home goods. It's a gift shop for people who hate gift shops — everything is beautiful, functional, and chosen with real taste.",
-    signature: "The ceramics wall. Everything on it is made by independent Texas and Southwest potters.",
+    description: "A tiny modernist storefront on East 6th with a curation so tight it makes chain home stores feel embarrassing. The owner has an eye for objects that earn their shelf space — Japanese textiles, European ceramics, small-batch soap, jewelry from local makers. Walk out with a coffee mug you'll still love in five years.",
+    signature: "Ask what arrived this month. The owner keeps a mental inventory of every maker and will tell you exactly why each piece earned its place.",
     action: "Get Directions",
     actionType: "directions",
     image: null,
@@ -604,7 +607,34 @@ const ListIcon = ({ active }) => (
 
 // ─── Image Placeholders (using colored SVGs) ────────────────────────────────
 
-const PlaceholderImage = ({ index, size = "full" }) => {
+const PlaceholderImage = ({ index, size = "full", photo }) => {
+  if (photo?.src) {
+    return (
+      <div style={{ width: "100%", height: "100%", position: "relative", overflow: "hidden", backgroundColor: "#eee" }}>
+        <img
+          src={photo.src}
+          alt=""
+          loading="lazy"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+        {photo.credit && (
+          <div style={{
+            position: "absolute",
+            bottom: 4,
+            right: 6,
+            fontSize: 9,
+            color: "rgba(255,255,255,0.85)",
+            textShadow: "0 1px 2px rgba(0,0,0,0.7)",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+            letterSpacing: 0.3,
+            pointerEvents: "none",
+          }}>
+            Photo: {photo.credit}
+          </div>
+        )}
+      </div>
+    );
+  }
   const palettes = [
     { bg: "#C4A882", accent: "#A68B6B" },
     { bg: "#8B9DAF", accent: "#6E839A" },
@@ -883,7 +913,7 @@ const ListEntry = ({ entry, index }) => {
         overflow: "hidden",
         flexShrink: 0,
       }}>
-        <PlaceholderImage index={index} size="thumb" />
+        <PlaceholderImage index={index} size="thumb" photo={CITY_PHOTOS[entry.id]} />
       </div>
     </article>
   );
@@ -907,7 +937,7 @@ const GridEntry = ({ entry, index }) => {
     >
       {/* Image */}
       <div style={{ width: "100%", height: 200, position: "relative" }}>
-        <PlaceholderImage index={index} />
+        <PlaceholderImage index={index} photo={CITY_PHOTOS[entry.id]} />
         {/* Number overlay */}
         <div style={{
           position: "absolute", top: 16, left: 16,

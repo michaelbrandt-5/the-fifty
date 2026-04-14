@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import PHOTOS from "./src/photos.json";
+
+const CITY_PHOTOS = PHOTOS["miami"] || {};
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -119,11 +122,11 @@ const ENTRIES = [
   },
   {
     id: 11,
-    name: "Alter",
+    name: "Beaker & Gray",
     category: "Eat",
     neighborhood: "Wynwood",
-    description: "Brad Kilgore's tasting-menu restaurant in Wynwood is where Miami's fine-dining ambitions feel fully realized. The courses are precise, inventive, and occasionally astonishing — liquid nitrogen, rare Japanese ingredients, techniques borrowed from three continents. The dining room is intimate and the kitchen is visible. You're watching an artist work.",
-    signature: "The chef's tasting menu with wine pairings. Let the sommelier drive — the pairings are half the experience.",
+    description: "Brian Nasajon's Wynwood gastropub has been an anchor of the neighborhood since 2015 — which in Miami years is basically forever. The menu bounces between Latin, Asian, and American influences with a coherence most fusion kitchens can't pull off, and the bar program is one of the city's most ambitious. The kind of place you come for drinks and stay until the kitchen closes.",
+    signature: "Start with the bao buns and let the bartender build you something off-menu. The late-night happy hour is one of Miami's best-kept secrets.",
     action: "Reserve",
     actionType: "reserve",
     image: null,
@@ -604,7 +607,34 @@ const ListIcon = ({ active }) => (
 
 // ─── Image Placeholders (using colored SVGs) ────────────────────────────────
 
-const PlaceholderImage = ({ index, size = "full" }) => {
+const PlaceholderImage = ({ index, size = "full", photo }) => {
+  if (photo?.src) {
+    return (
+      <div style={{ width: "100%", height: "100%", position: "relative", overflow: "hidden", backgroundColor: "#eee" }}>
+        <img
+          src={photo.src}
+          alt=""
+          loading="lazy"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+        {photo.credit && (
+          <div style={{
+            position: "absolute",
+            bottom: 4,
+            right: 6,
+            fontSize: 9,
+            color: "rgba(255,255,255,0.85)",
+            textShadow: "0 1px 2px rgba(0,0,0,0.7)",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+            letterSpacing: 0.3,
+            pointerEvents: "none",
+          }}>
+            Photo: {photo.credit}
+          </div>
+        )}
+      </div>
+    );
+  }
   const palettes = [
     { bg: "#C4A882", accent: "#A68B6B" },
     { bg: "#8B9DAF", accent: "#6E839A" },
@@ -883,7 +913,7 @@ const ListEntry = ({ entry, index }) => {
         overflow: "hidden",
         flexShrink: 0,
       }}>
-        <PlaceholderImage index={index} size="thumb" />
+        <PlaceholderImage index={index} size="thumb" photo={CITY_PHOTOS[entry.id]} />
       </div>
     </article>
   );
@@ -907,7 +937,7 @@ const GridEntry = ({ entry, index }) => {
     >
       {/* Image */}
       <div style={{ width: "100%", height: 200, position: "relative" }}>
-        <PlaceholderImage index={index} />
+        <PlaceholderImage index={index} photo={CITY_PHOTOS[entry.id]} />
         {/* Number overlay */}
         <div style={{
           position: "absolute", top: 16, left: 16,

@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import PHOTOS from "./src/photos.json";
+
+const CITY_PHOTOS = PHOTOS["new-york"] || {};
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -163,11 +166,11 @@ const ENTRIES = [
   },
   {
     id: 15,
-    name: "Smilga",
+    name: "Lilia",
     category: "Eat",
     neighborhood: "Williamsburg",
-    description: "Ignacio Mattos followed Estela with this Williamsburg restaurant that feels like a dinner party at a very cultured friend's house. The menu is short, seasonal, and full of the kind of restrained, elemental cooking that makes you realize how many restaurants are overcomplicating things. Every ingredient earns its place on the plate.",
-    signature: "Let the kitchen guide you. The tasting is short and sharp. Whatever fish they're running that night, say yes.",
+    description: "Missy Robbins' Williamsburg pasta temple is the hardest reservation in Brooklyn for good reason. The handmade pastas — agnolotti, mafaldine, cacio e pepe fritti — are among the best in the country, served in a converted auto body shop that somehow feels like the coziest room in the neighborhood. If you eat pasta in New York, you eat here.",
+    signature: "The mafaldine with pink peppercorns is the signature, but the agnolotti changes with the seasons and is almost always the dish of the night. Book exactly 30 days out at midnight.",
     action: "Reserve",
     actionType: "reserve",
     image: null,
@@ -604,7 +607,34 @@ const ListIcon = ({ active }) => (
 
 // ─── Image Placeholders (using colored SVGs) ────────────────────────────────
 
-const PlaceholderImage = ({ index, size = "full" }) => {
+const PlaceholderImage = ({ index, size = "full", photo }) => {
+  if (photo?.src) {
+    return (
+      <div style={{ width: "100%", height: "100%", position: "relative", overflow: "hidden", backgroundColor: "#eee" }}>
+        <img
+          src={photo.src}
+          alt=""
+          loading="lazy"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+        {photo.credit && (
+          <div style={{
+            position: "absolute",
+            bottom: 4,
+            right: 6,
+            fontSize: 9,
+            color: "rgba(255,255,255,0.85)",
+            textShadow: "0 1px 2px rgba(0,0,0,0.7)",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+            letterSpacing: 0.3,
+            pointerEvents: "none",
+          }}>
+            Photo: {photo.credit}
+          </div>
+        )}
+      </div>
+    );
+  }
   const palettes = [
     { bg: "#C4A882", accent: "#A68B6B" },
     { bg: "#8B9DAF", accent: "#6E839A" },
@@ -883,7 +913,7 @@ const ListEntry = ({ entry, index }) => {
         overflow: "hidden",
         flexShrink: 0,
       }}>
-        <PlaceholderImage index={index} size="thumb" />
+        <PlaceholderImage index={index} size="thumb" photo={CITY_PHOTOS[entry.id]} />
       </div>
     </article>
   );
@@ -907,7 +937,7 @@ const GridEntry = ({ entry, index }) => {
     >
       {/* Image */}
       <div style={{ width: "100%", height: 200, position: "relative" }}>
-        <PlaceholderImage index={index} />
+        <PlaceholderImage index={index} photo={CITY_PHOTOS[entry.id]} />
         {/* Number overlay */}
         <div style={{
           position: "absolute", top: 16, left: 16,

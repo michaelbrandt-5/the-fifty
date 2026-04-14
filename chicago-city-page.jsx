@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import PHOTOS from "./src/photos.json";
+
+const CITY_PHOTOS = PHOTOS["chicago"] || {};
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -383,11 +386,11 @@ const ENTRIES = [
   },
   {
     id: 35,
-    name: "Wicker Park Farmers Market",
+    name: "Quimby's Bookstore",
     category: "Shop",
     neighborhood: "Wicker Park",
-    description: "Every Sunday from June through October, the triangle park fills with local farmers, bakers, and food vendors. The produce is seasonal and hyper-local, the prepared food stalls are excellent, and the people-watching is peak Wicker Park. It's the kind of market that reminds you seasons exist and that the Midwest grows some of the best produce in the country.",
-    signature: "Get there by 9am for the best selection. The mushroom vendor and the stone fruit stand are the ones the chefs shop from.",
+    description: "The Wicker Park bookstore that's been fueling Chicago's zine, comics, and small-press underground since 1991. The shelves lean weird — experimental literature, graphic novels, political tracts, art books from presses you've never heard of — and the staff actually reads what they stock. It's what an independent bookstore is supposed to feel like.",
+    signature: "The zine wall by the register is the best in the Midwest. Ask what's new from local Chicago presses and you'll walk out with something you didn't know you wanted.",
     action: "Get Directions",
     actionType: "directions",
     image: null,
@@ -604,7 +607,34 @@ const ListIcon = ({ active }) => (
 
 // ─── Image Placeholders (using colored SVGs) ────────────────────────────────
 
-const PlaceholderImage = ({ index, size = "full" }) => {
+const PlaceholderImage = ({ index, size = "full", photo }) => {
+  if (photo?.src) {
+    return (
+      <div style={{ width: "100%", height: "100%", position: "relative", overflow: "hidden", backgroundColor: "#eee" }}>
+        <img
+          src={photo.src}
+          alt=""
+          loading="lazy"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+        {photo.credit && (
+          <div style={{
+            position: "absolute",
+            bottom: 4,
+            right: 6,
+            fontSize: 9,
+            color: "rgba(255,255,255,0.85)",
+            textShadow: "0 1px 2px rgba(0,0,0,0.7)",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+            letterSpacing: 0.3,
+            pointerEvents: "none",
+          }}>
+            Photo: {photo.credit}
+          </div>
+        )}
+      </div>
+    );
+  }
   const palettes = [
     { bg: "#C4A882", accent: "#A68B6B" },
     { bg: "#8B9DAF", accent: "#6E839A" },
@@ -883,7 +913,7 @@ const ListEntry = ({ entry, index }) => {
         overflow: "hidden",
         flexShrink: 0,
       }}>
-        <PlaceholderImage index={index} size="thumb" />
+        <PlaceholderImage index={index} size="thumb" photo={CITY_PHOTOS[entry.id]} />
       </div>
     </article>
   );
@@ -907,7 +937,7 @@ const GridEntry = ({ entry, index }) => {
     >
       {/* Image */}
       <div style={{ width: "100%", height: 200, position: "relative" }}>
-        <PlaceholderImage index={index} />
+        <PlaceholderImage index={index} photo={CITY_PHOTOS[entry.id]} />
         {/* Number overlay */}
         <div style={{
           position: "absolute", top: 16, left: 16,

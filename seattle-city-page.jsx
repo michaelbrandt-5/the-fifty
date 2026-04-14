@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -652,13 +653,13 @@ const Hero = () => (
     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(30,26,22,0.85) 0%, rgba(30,26,22,0.3) 50%, rgba(30,26,22,0.15) 100%)" }} />
 
     {/* Nav bar */}
-    <nav style={{ position: "relative", zIndex: 10, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "28px 40px" }}>
-      <div style={{ fontFamily: "'Georgia', serif", fontSize: 18, fontWeight: 400, color: "#f5f0e8", letterSpacing: 2, textTransform: "uppercase" }}>
+    <nav className="fifty-nav" style={{ position: "relative", zIndex: 10, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "28px 40px" }}>
+      <Link to="/" style={{ fontFamily: "'Georgia', serif", fontSize: 18, fontWeight: 400, color: "#f5f0e8", letterSpacing: 2, textTransform: "uppercase", textDecoration: "none" }}>
         The Fifty
-      </div>
+      </Link>
       <div style={{ display: "flex", gap: 28, fontSize: 13, color: "rgba(245,240,232,0.7)", letterSpacing: 0.5 }}>
-        <span style={{ cursor: "pointer" }}>Cities</span>
-        <span style={{ cursor: "pointer" }}>About</span>
+        <Link to="/#cities" style={{ cursor: "pointer", color: "inherit", textDecoration: "none" }}>Cities</Link>
+        <Link to="/#how-it-works" style={{ cursor: "pointer", color: "inherit", textDecoration: "none" }}>About</Link>
         <span style={{ cursor: "pointer" }}>Newsletter</span>
       </div>
     </nav>
@@ -783,7 +784,7 @@ const FilterBar = ({ activeCategory, setActiveCategory, activeNeighborhood, setA
 const ListEntry = ({ entry, index }) => {
   const catColor = getCategoryColor(entry.category);
   return (
-    <article style={{
+    <article className="fifty-list-item" style={{
       display: "grid",
       gridTemplateColumns: "72px 1fr 180px",
       gap: 0,
@@ -804,7 +805,7 @@ const ListEntry = ({ entry, index }) => {
       </div>
 
       {/* Content */}
-      <div style={{ paddingRight: 32 }}>
+      <div className="fifty-list-content" style={{ paddingRight: 32 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8, flexWrap: "wrap" }}>
           <h3 style={{ fontFamily: "'Georgia', serif", fontSize: 22, fontWeight: 400, color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
             {entry.name}
@@ -875,7 +876,7 @@ const ListEntry = ({ entry, index }) => {
       </div>
 
       {/* Thumbnail */}
-      <div style={{
+      <div className="fifty-list-thumb" style={{
         width: 180,
         height: 140,
         borderRadius: 8,
@@ -1234,7 +1235,7 @@ export default function SeattleCityPage() {
       </div>
 
       {/* List */}
-      <main style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px 80px" }}>
+      <main className="fifty-main" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px 80px" }}>
         {view === "list" ? (
           <div>
             {filtered.map((entry, i) => (

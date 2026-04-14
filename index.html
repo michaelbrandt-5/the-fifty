@@ -4,6 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Fifty</title>
+    <style>
+      /* Prevent accidental horizontal page scroll on mobile */
+      html, body { overflow-x: hidden; }
+      /* Mobile fixes for city pages — list view */
+      @media (max-width: 720px) {
+        .fifty-list-item {
+          grid-template-columns: 48px 1fr !important;
+          padding: 28px 0 !important;
+          gap: 12px !important;
+        }
+        .fifty-list-thumb { display: none !important; }
+        .fifty-list-content { padding-right: 0 !important; }
+      }
+      @media (max-width: 640px) {
+        .fifty-nav { padding: 20px 20px !important; }
+        .fifty-main { padding: 0 20px 60px !important; }
+        .fifty-hero-content { padding: 0 20px 40px !important; }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

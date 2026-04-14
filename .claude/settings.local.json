@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(brew --version)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/michaelbrandt/.nvm/**)",
+      "Bash(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)",
+      "Read(//opt/**)",
+      "Bash(curl -fsSL https://nodejs.org/dist/v22.15.0/node-v22.15.0-darwin-arm64.tar.gz -o /tmp/node.tar.gz)",
+      "Bash(mkdir -p /usr/local/lib/nodejs)",
+      "Bash(tar -xzf /tmp/node.tar.gz -C /usr/local/lib/nodejs)",
+      "Bash(mkdir -p ~/local/nodejs)",
+      "Bash(tar -xzf /tmp/node.tar.gz -C ~/local/nodejs)",
+      "Read(//Users/michaelbrandt/local/**)",
+      "Bash(export PATH=\"$HOME/local/nodejs/node-v22.15.0-darwin-arm64/bin:$PATH\")",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -sI \"https://source.unsplash.com/featured/?portland,oregon\")",
+      "Bash(curl -sI \"https://source.unsplash.com/600x400/?portland,oregon,skyline\")",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(curl -s -H \"User-Agent: Mozilla/5.0\" \"https://unsplash.com/napi/search/photos?query=portland%20oregon%20skyline&per_page=15\")",
+      "Bash(curl -s -H \"User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36\" \"https://duckduckgo.com/html/?q=site%3Aimages.unsplash.com+portland+oregon+skyline\")",
+      "Bash(curl -sL -H \"User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36\" \"https://www.google.com/search?q=unsplash+portland+oregon+skyline+site:images.unsplash.com&tbm=isch\")",
+      "Bash(curl -sL -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\" \"https://www.bing.com/images/search?q=unsplash+portland+oregon+skyline+mt+hood\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://images.unsplash.com/photo-1530891671629-3a053324e4f7?w=600&q=80\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://www.bing.com/images/search?q=unsplash.com+portland+oregon\" -o /tmp/bing2.html)",
+      "Read(//tmp/**)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://www.bing.com/images/search?q=unsplash+%22photo-%22+portland+oregon\" -o /tmp/bing3.html)",
+      "Bash(git --version)",
+      "Bash(git config:*)"
+    ]
+  }
+}

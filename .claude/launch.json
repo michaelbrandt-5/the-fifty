@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "the-fifty-dev",
+      "runtimeExecutable": "/Users/michaelbrandt/local/nodejs/node-v22.15.0-darwin-arm64/bin/node",
+      "runtimeArgs": ["/Users/michaelbrandt/Documents/Claude/Projects/FIfty/node_modules/.bin/vite", "--host"],
+      "port": 5173
+    }
+  ]
+}

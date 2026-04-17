@@ -14,6 +14,7 @@ import Miami from "../miami-city-page.jsx";
 import Portland from "../portland-city-page.jsx";
 import Denver from "../denver-city-page.jsx";
 import Methodology from "../methodology-page.jsx";
+import PasswordGate from "./PasswordGate.jsx";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -32,22 +33,24 @@ function ScrollToTop() {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/austin" element={<Austin />} />
-        <Route path="/new-york" element={<NewYork />} />
-        <Route path="/nashville" element={<Nashville />} />
-        <Route path="/chicago" element={<Chicago />} />
-        <Route path="/los-angeles" element={<LosAngeles />} />
-        <Route path="/seattle" element={<Seattle />} />
-        <Route path="/san-francisco" element={<SanFrancisco />} />
-        <Route path="/miami" element={<Miami />} />
-        <Route path="/portland" element={<Portland />} />
-        <Route path="/denver" element={<Denver />} />
-        <Route path="/methodology" element={<Methodology />} />
-      </Routes>
-    </BrowserRouter>
+    <PasswordGate>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/austin" element={<Austin />} />
+          <Route path="/new-york" element={<NewYork />} />
+          <Route path="/nashville" element={<Nashville />} />
+          <Route path="/chicago" element={<Chicago />} />
+          <Route path="/los-angeles" element={<LosAngeles />} />
+          <Route path="/seattle" element={<Seattle />} />
+          <Route path="/san-francisco" element={<SanFrancisco />} />
+          <Route path="/miami" element={<Miami />} />
+          <Route path="/portland" element={<Portland />} />
+          <Route path="/denver" element={<Denver />} />
+          <Route path="/methodology" element={<Methodology />} />
+        </Routes>
+      </BrowserRouter>
+    </PasswordGate>
   </React.StrictMode>
 );

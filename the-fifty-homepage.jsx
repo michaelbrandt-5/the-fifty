@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { subscribeEmail } from "./src/mailchimp.js";
 
 const CITIES = [
   { name: "New York", slug: "new-york", tagline: "The definitive 50", region: "Northeast", img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80" },
@@ -120,7 +121,7 @@ function Nav() {
             padding: "8px 20px", background: "#1A1A1A", color: "#F7F4EE",
             border: "none", letterSpacing: "0.06em", textTransform: "uppercase",
             fontWeight: 500, cursor: "pointer",
-          }}>Subscribe</button>
+          }} onClick={() => document.getElementById("subscribe")?.scrollIntoView({ behavior: "smooth" })}>Subscribe</button>
         </div>
       </div>
     </nav>
@@ -449,12 +450,28 @@ function PhilosophySection() {
 function WaitlistSection() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
+
+  const handleSubmit = async () => {
+    if (!email) return;
+    setSubmitting(true);
+    setError("");
+    try {
+      await subscribeEmail(email);
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const upcomingCities = ["New Orleans", "Charleston", "Philadelphia", "Boston", "Washington D.C.", "Santa Fe"];
 
   return (
-    <section style={{
+    <section id="subscribe" style={{
       background: "#1A1A1A", color: "#F7F4EE",
       padding: "100px 24px", textAlign: "center",
     }}>
@@ -496,33 +513,44 @@ function WaitlistSection() {
           ))}
         </div>
         {!submitted ? (
-          <div style={{
-            display: "flex", gap: 0, maxWidth: 460, margin: "0 auto",
-          }}>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={{
-                flex: 1, padding: "14px 20px",
-                fontFamily: "'Inter', sans-serif", fontSize: 14,
-                background: "rgba(247,244,238,0.06)",
-                border: "1px solid rgba(247,244,238,0.12)",
-                borderRight: "none",
-                color: "#F7F4EE", outline: "none",
-              }}
-            />
-            <button
-              onClick={() => { if (email) setSubmitted(true); }}
-              style={{
-                fontFamily: "'Inter', sans-serif", fontSize: 12,
-                padding: "14px 28px", background: "#B8864E", color: "#1A1A1A",
-                border: "none", letterSpacing: "0.08em", textTransform: "uppercase",
-                fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
-              }}
-            >Join Waitlist</button>
-          </div>
+          <>
+            <div style={{
+              display: "flex", gap: 0, maxWidth: 460, margin: "0 auto",
+            }}>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+                style={{
+                  flex: 1, padding: "14px 20px",
+                  fontFamily: "'Inter', sans-serif", fontSize: 14,
+                  background: "rgba(247,244,238,0.06)",
+                  border: "1px solid rgba(247,244,238,0.12)",
+                  borderRight: "none",
+                  color: "#F7F4EE", outline: "none",
+                }}
+              />
+              <button
+                onClick={handleSubmit}
+                disabled={submitting}
+                style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: 12,
+                  padding: "14px 28px", background: submitting ? "#9a7040" : "#B8864E", color: "#1A1A1A",
+                  border: "none", letterSpacing: "0.08em", textTransform: "uppercase",
+                  fontWeight: 600, cursor: submitting ? "wait" : "pointer", whiteSpace: "nowrap",
+                  opacity: submitting ? 0.7 : 1, transition: "all 0.2s",
+                }}
+              >{submitting ? "Joining..." : "Join Waitlist"}</button>
+            </div>
+            {error && (
+              <p style={{
+                fontFamily: "'Inter', sans-serif", fontSize: 13,
+                color: "#e8614d", marginTop: 12,
+              }}>{error}</p>
+            )}
+          </>
         ) : (
           <div style={{
             padding: "16px 24px",

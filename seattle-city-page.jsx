@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import PHOTOS from "./src/photos.json";
+import { subscribeEmail } from "./src/mailchimp.js";
 
 const CITY_PHOTOS = PHOTOS["seattle"] || {};
 
@@ -690,7 +691,7 @@ const Hero = () => (
       <div style={{ display: "flex", gap: 28, fontSize: 13, color: "rgba(245,240,232,0.7)", letterSpacing: 0.5 }}>
         <Link to="/#cities" style={{ cursor: "pointer", color: "inherit", textDecoration: "none" }}>Cities</Link>
         <Link to="/#how-it-works" style={{ cursor: "pointer", color: "inherit", textDecoration: "none" }}>About</Link>
-        <span style={{ cursor: "pointer" }}>Newsletter</span>
+        <span style={{ cursor: "pointer" }} onClick={() => document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" })}>Newsletter</span>
       </div>
     </nav>
 
@@ -1149,39 +1150,7 @@ const Footer = () => {
       </div>
 
       {/* Email capture */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{ maxWidth: 480, margin: "0 auto", textAlign: "center" }}>
-          <h3 style={{ fontFamily: "'Georgia', serif", fontSize: 24, fontWeight: 400, color: "#f5f0e8", margin: "0 0 8px" }}>
-            New cities are coming
-          </h3>
-          <p style={{ fontFamily: "'Georgia', serif", fontSize: 14, color: "rgba(255,255,255,0.4)", margin: "0 0 28px" }}>
-            We'll let you know when we publish the next one. Nothing else.
-          </p>
-          <div style={{ display: "flex", gap: 8 }}>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              style={{
-                flex: 1, padding: "14px 18px", borderRadius: 8,
-                border: "1px solid rgba(255,255,255,0.12)",
-                backgroundColor: "rgba(255,255,255,0.04)",
-                color: "#f5f0e8", fontSize: 14,
-                fontFamily: "system-ui, sans-serif",
-                outline: "none",
-              }}
-            />
-            <button style={{
-              padding: "14px 28px", borderRadius: 8,
-              border: "none", backgroundColor: "#f5f0e8",
-              color: "#1a1a1a", fontSize: 13, fontWeight: 600,
-              letterSpacing: 0.5, cursor: "pointer",
-              fontFamily: "system-ui, sans-serif",
-            }}>
-              Notify Me
-            </button>
-          </div>
-        </div>
-      </div>
+      <NewsletterCapture />
 
       {/* Other cities */}
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px" }}>
@@ -1229,6 +1198,91 @@ const Footer = () => {
 };
 
 // ─── Main Page Component ─────────────────────────────────────────────────────
+
+function NewsletterCapture() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async () => {
+    if (!email) return;
+    setSubmitting(true);
+    setError("");
+    try {
+      await subscribeEmail(email);
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div id="newsletter" style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <div style={{ maxWidth: 480, margin: "0 auto", textAlign: "center" }}>
+        <h3 style={{ fontFamily: "'Georgia', serif", fontSize: 24, fontWeight: 400, color: "#f5f0e8", margin: "0 0 8px" }}>
+          New cities are coming
+        </h3>
+        <p style={{ fontFamily: "'Georgia', serif", fontSize: 14, color: "rgba(255,255,255,0.4)", margin: "0 0 28px" }}>
+          We'll let you know when we publish the next one. Nothing else.
+        </p>
+        {!submitted ? (
+          <>
+            <div style={{ display: "flex", gap: 8 }}>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+                style={{
+                  flex: 1, padding: "14px 18px", borderRadius: 8,
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  backgroundColor: "rgba(255,255,255,0.04)",
+                  color: "#f5f0e8", fontSize: 14,
+                  fontFamily: "system-ui, sans-serif",
+                  outline: "none",
+                }}
+              />
+              <button
+                onClick={handleSubmit}
+                disabled={submitting}
+                style={{
+                  padding: "14px 28px", borderRadius: 8,
+                  border: "none", backgroundColor: submitting ? "#d4cfc6" : "#f5f0e8",
+                  color: "#1a1a1a", fontSize: 13, fontWeight: 600,
+                  letterSpacing: 0.5, cursor: submitting ? "wait" : "pointer",
+                  fontFamily: "system-ui, sans-serif",
+                  opacity: submitting ? 0.7 : 1, transition: "all 0.2s",
+                }}>
+                {submitting ? "Subscribing..." : "Notify Me"}
+              </button>
+            </div>
+            {error && (
+              <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#e8614d", marginTop: 12 }}>{error}</p>
+            )}
+          </>
+        ) : (
+          <div style={{
+            padding: "16px 24px",
+            background: "rgba(184,134,78,0.15)",
+            border: "1px solid rgba(184,134,78,0.25)",
+            borderRadius: 8,
+          }}>
+            <p style={{
+              fontFamily: "system-ui, sans-serif", fontSize: 14,
+              color: "#B8864E", margin: 0,
+            }}>
+              You're on the list. We'll let you know when the next city drops.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function SeattleCityPage() {
   const [activeCategory, setActiveCategory] = useState("All");

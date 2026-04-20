@@ -2,8 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import PHOTOS from "./src/photos.json";
 import { subscribeEmail } from "./src/mailchimp.js";
+import CityMap from "./src/CityMap.jsx";
+import LOCATIONS from "./src/locations.json";
 
 const CITY_PHOTOS = PHOTOS["portland"] || {};
+const CITY_LOCATIONS = LOCATIONS["portland"] || {};
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -1358,6 +1361,7 @@ export default function PortlandCityPage() {
         <MobilePreview />
       </div>
 
+      <CityMap entries={ENTRIES} locations={CITY_LOCATIONS} cityName="Portland" />
       <Footer />
     </div>
   );

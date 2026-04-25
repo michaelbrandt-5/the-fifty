@@ -1,0 +1,187 @@
+// Custom prerender using modern puppeteer.
+// Spins up a static server pointing at dist/, navigates to each route, waits
+// for the React app to fire 'render-event', and snapshots the rendered HTML.
+//
+// Why custom: vite-plugin-prerender's bundled puppeteer is ancient (Chrome r686378)
+// and fails on modern systems. Our local puppeteer brings a working Chromium.
+
+import fs from "node:fs";
+import path from "node:path";
+import http from "node:http";
+import { fileURLToPath } from "node:url";
+import puppeteer from "puppeteer";
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const DIST = path.join(ROOT, "dist");
+const PORT = 4173;
+const ORIGIN = `http://localhost:${PORT}`;
+
+const ROUTES = [
+  "/",
+  "/methodology",
+  "/photo-credits",
+  "/austin",
+  "/new-york",
+  "/nashville",
+  "/chicago",
+  "/los-angeles",
+  "/seattle",
+  "/san-francisco",
+  "/miami",
+  "/portland",
+  "/denver",
+];
+
+// Static server — serves files from dist/, falls back to index.html for SPA routes.
+function startServer() {
+  const mime = {
+    ".html": "text/html; charset=utf-8",
+    ".js": "application/javascript; charset=utf-8",
+    ".css": "text/css; charset=utf-8",
+    ".json": "application/json; charset=utf-8",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".svg": "image/svg+xml",
+    ".ico": "image/x-icon",
+    ".webmanifest": "application/manifest+json",
+    ".xml": "application/xml",
+    ".txt": "text/plain; charset=utf-8",
+  };
+  const server = http.createServer((req, res) => {
+    let urlPath = decodeURIComponent(req.url.split("?")[0]);
+    let filePath = path.join(DIST, urlPath);
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+      filePath = path.join(filePath, "index.html");
+    }
+    if (!fs.existsSync(filePath)) {
+      // SPA fallback
+      filePath = path.join(DIST, "index.html");
+    }
+    const ext = path.extname(filePath).toLowerCase();
+    const type = mime[ext] || "application/octet-stream";
+    res.writeHead(200, { "Content-Type": type });
+    fs.createReadStream(filePath).pipe(res);
+  });
+  return new Promise((resolve) => server.listen(PORT, () => resolve(server)));
+}
+
+async function snapshotRoute(browser, route) {
+  const page = await browser.newPage();
+  await page.setUserAgent(
+    "Mozilla/5.0 (compatible; PrerenderBot/1.0; +https://thefiftylist.com)"
+  );
+  await page.setViewport({ width: 1280, height: 1024 });
+
+  const url = `${ORIGIN}${route}`;
+
+  // Listen for the 'render-event' our app dispatches once React+Helmet have flushed.
+  const renderEvent = page.evaluateOnNewDocument(() => {
+    window.__RENDER_EVENT_FIRED__ = false;
+    document.addEventListener("render-event", () => {
+      window.__RENDER_EVENT_FIRED__ = true;
+    });
+  });
+
+  await page.goto(url, { waitUntil: "networkidle0", timeout: 30000 });
+
+  // Wait for our render event (or 8s timeout)
+  await page
+    .waitForFunction(() => window.__RENDER_EVENT_FIRED__ === true, {
+      timeout: 8000,
+    })
+    .catch(() => {
+      console.warn(`  ⚠️  ${route}: render-event timeout — using current DOM`);
+    });
+
+  const html = await page.content();
+  await page.close();
+  return dedupeHeadTags(html);
+}
+
+// Helmet (and our index.html fallbacks) can leave duplicate head tags after a
+// puppeteer snapshot. Keep only the LAST occurrence of each unique meta tag.
+function dedupeHeadTags(html) {
+  const headStart = html.indexOf("<head>");
+  const headEnd = html.indexOf("</head>");
+  if (headStart < 0 || headEnd < 0) return html;
+  const before = html.slice(0, headStart + 6);
+  const head = html.slice(headStart + 6, headEnd);
+  const after = html.slice(headEnd);
+
+  // Keep the LAST <title>
+  const titleMatches = [...head.matchAll(/<title[^>]*>[\s\S]*?<\/title>/gi)];
+  let cleanedHead = head;
+  if (titleMatches.length > 1) {
+    const last = titleMatches[titleMatches.length - 1][0];
+    cleanedHead = cleanedHead.replace(/<title[^>]*>[\s\S]*?<\/title>/gi, "");
+    cleanedHead = cleanedHead.replace(/^/, last + "\n  ");
+  }
+
+  // Dedupe meta tags by their identifying attribute
+  const dedupeBy = (regex, key) => {
+    const matches = [...cleanedHead.matchAll(regex)];
+    const seen = new Map();
+    matches.forEach((m, i) => {
+      const id = m[1];
+      seen.set(id, { tag: m[0], idx: i });
+    });
+    if (matches.length > seen.size) {
+      // Strip all, then re-insert kept ones in head
+      cleanedHead = cleanedHead.replace(regex, "");
+      const kept = [...seen.values()].map((v) => v.tag).join("\n  ");
+      cleanedHead = kept + "\n  " + cleanedHead;
+    }
+  };
+
+  dedupeBy(/<meta name="(description|twitter:[^"]+)"[^>]*>/gi, "name");
+  dedupeBy(/<meta property="(og:[^"]+)"[^>]*>/gi, "property");
+  dedupeBy(/<link rel="(canonical)"[^>]*>/gi, "rel");
+
+  return before + cleanedHead + after;
+}
+
+async function main() {
+  if (!fs.existsSync(path.join(DIST, "index.html"))) {
+    console.error("dist/index.html not found. Run `vite build` first.");
+    process.exit(1);
+  }
+
+  const server = await startServer();
+  console.log(`Static server listening on ${ORIGIN}`);
+
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
+
+  let succeeded = 0;
+  let failed = 0;
+  for (const route of ROUTES) {
+    try {
+      const html = await snapshotRoute(browser, route);
+      const outDir =
+        route === "/" ? DIST : path.join(DIST, route.replace(/^\//, ""));
+      fs.mkdirSync(outDir, { recursive: true });
+      const outPath = path.join(outDir, "index.html");
+      fs.writeFileSync(outPath, html);
+      const sizeKb = (Buffer.byteLength(html) / 1024).toFixed(1);
+      console.log(`  ✓ ${route.padEnd(20)} → ${path.relative(ROOT, outPath)}  (${sizeKb} KB)`);
+      succeeded++;
+    } catch (err) {
+      console.error(`  ✗ ${route}: ${err.message}`);
+      failed++;
+    }
+  }
+
+  await browser.close();
+  server.close();
+
+  console.log(`\nPrerender complete. ${succeeded} succeeded, ${failed} failed.`);
+  process.exit(failed === 0 ? 0 : 1);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

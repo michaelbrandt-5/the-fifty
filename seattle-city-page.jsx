@@ -4,6 +4,7 @@ import PHOTOS from "./src/photos.json";
 import { subscribeEmail } from "./src/mailchimp.js";
 import CityMap from "./src/CityMap.jsx";
 import LOCATIONS from "./src/locations.json";
+import PageMeta from "./src/PageMeta.jsx";
 
 const CITY_PHOTOS = PHOTOS["seattle"] || {};
 const CITY_LOCATIONS = LOCATIONS["seattle"] || {};
@@ -611,13 +612,13 @@ const ListIcon = ({ active }) => (
 
 // ─── Image Placeholders (using colored SVGs) ────────────────────────────────
 
-const PlaceholderImage = ({ index, size = "full", photo }) => {
+const PlaceholderImage = ({ index, size = "full", photo, entry }) => {
   if (photo?.src) {
     return (
       <div style={{ width: "100%", height: "100%", position: "relative", overflow: "hidden", backgroundColor: "#eee" }}>
         <img
           src={photo.src}
-          alt=""
+          alt={entry ? `${entry.name} — ${entry.category} in ${entry.neighborhood}` : ""}
           loading="lazy"
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
@@ -917,7 +918,7 @@ const ListEntry = ({ entry, index }) => {
         overflow: "hidden",
         flexShrink: 0,
       }}>
-        <PlaceholderImage index={index} size="thumb" photo={CITY_PHOTOS[entry.id]} />
+        <PlaceholderImage index={index} size="thumb" photo={CITY_PHOTOS[entry.id]} entry={entry} />
       </div>
     </article>
   );
@@ -941,7 +942,7 @@ const GridEntry = ({ entry, index }) => {
     >
       {/* Image */}
       <div style={{ width: "100%", height: 200, position: "relative" }}>
-        <PlaceholderImage index={index} photo={CITY_PHOTOS[entry.id]} />
+        <PlaceholderImage index={index} photo={CITY_PHOTOS[entry.id]} entry={entry} />
         {/* Number overlay */}
         <div style={{
           position: "absolute", top: 16, left: 16,
@@ -1171,6 +1172,8 @@ export default function SeattleCityPage() {
   });
 
   return (
+    <>
+      <PageMeta page="city" citySlug="seattle" entries={ENTRIES} />
     <div style={{ backgroundColor: "#FAF7F2", minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
       {/* Google Fonts fallback — Georgia is system-available */}
       <Hero />
@@ -1231,5 +1234,6 @@ export default function SeattleCityPage() {
       <CityMap entries={ENTRIES} locations={CITY_LOCATIONS} cityName="Seattle" />
       <Footer />
     </div>
+    </>
   );
 }

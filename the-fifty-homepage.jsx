@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { subscribeEmail } from "./src/mailchimp.js";
+import PageMeta from "./src/PageMeta.jsx";
 
 const CITIES = [
-  { name: "New York", slug: "new-york", tagline: "The definitive 50", region: "Northeast", img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80" },
-  { name: "Austin", slug: "austin", tagline: "Beyond the hype", region: "Texas", img: "https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=600&q=80" },
-  { name: "Nashville", slug: "nashville", tagline: "Past the neon", region: "Southeast", img: "https://images.unsplash.com/photo-1587162146766-e06b1189b907?w=600&q=80" },
-  { name: "Chicago", slug: "chicago", tagline: "The real list", region: "Midwest", img: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=600&q=80" },
-  { name: "Los Angeles", slug: "los-angeles", tagline: "Worth the drive", region: "West Coast", img: "https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?w=600&q=80" },
-  { name: "Seattle", slug: "seattle", tagline: "Rain or shine", region: "Pacific NW", img: "https://images.unsplash.com/photo-1542223616-740d5dff7f56?w=600&q=80" },
-  { name: "San Francisco", slug: "san-francisco", tagline: "Seven miles square", region: "West Coast", img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=80" },
-  { name: "Miami", slug: "miami", tagline: "Past the velvet rope", region: "Southeast", img: "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=600&q=80" },
-  { name: "Portland", slug: "portland", tagline: "Still keeping it weird", region: "Pacific NW", img: "https://images.unsplash.com/photo-1628783629868-19fb7eb52e2a?w=600&q=80" },
-  { name: "Denver", slug: "denver", tagline: "Mile high standards", region: "Mountain West", img: "https://images.unsplash.com/photo-1546156929-a4c0ac411f47?w=600&q=80" },
+  { name: "New York", slug: "new-york", tagline: "The definitive 50", region: "Northeast", img: "/images/cities/new-york.jpg" },
+  { name: "Austin", slug: "austin", tagline: "Beyond the hype", region: "Texas", img: "/images/cities/austin.jpg" },
+  { name: "Nashville", slug: "nashville", tagline: "Past the neon", region: "Southeast", img: "/images/cities/nashville.jpg" },
+  { name: "Chicago", slug: "chicago", tagline: "The real list", region: "Midwest", img: "/images/cities/chicago.jpg" },
+  { name: "Los Angeles", slug: "los-angeles", tagline: "Worth the drive", region: "West Coast", img: "/images/cities/los-angeles.jpg" },
+  { name: "Seattle", slug: "seattle", tagline: "Rain or shine", region: "Pacific NW", img: "/images/cities/seattle.jpg" },
+  { name: "San Francisco", slug: "san-francisco", tagline: "Seven miles square", region: "West Coast", img: "/images/cities/san-francisco.jpg" },
+  { name: "Miami", slug: "miami", tagline: "Past the velvet rope", region: "Southeast", img: "/images/cities/miami.jpg" },
+  { name: "Portland", slug: "portland", tagline: "Still keeping it weird", region: "Pacific NW", img: "/images/cities/portland.jpg" },
+  { name: "Denver", slug: "denver", tagline: "Mile high standards", region: "Mountain West", img: "/images/cities/denver.jpg" },
 ];
 
 const SAMPLE_PICKS = [
@@ -137,12 +138,12 @@ function Hero() {
     }}>
       <div style={{
         position: "absolute", top: "15%", left: "8%", width: 180, height: 240,
-        background: `url(https://images.unsplash.com/photo-1555992457-b8fefdd09a41?w=400&q=75) center/cover`,
+        background: `url(/images/cities/hero-1.jpg) center/cover`,
         opacity: 0.12, filter: "grayscale(30%)",
       }} />
       <div style={{
         position: "absolute", bottom: "18%", right: "10%", width: 150, height: 200,
-        background: `url(https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400&q=75) center/cover`,
+        background: `url(/images/cities/hero-2.jpg) center/cover`,
         opacity: 0.1, filter: "grayscale(30%)",
       }} />
       <p style={{
@@ -595,7 +596,8 @@ function Footer() {
           {[
             { label: "About", href: "#how-it-works" },
             { label: "Methodology", to: "/methodology" },
-            { label: "Contact", href: "#" },
+            { label: "Photo Credits", to: "/photo-credits" },
+            { label: "Contact", href: "mailto:hello@thefiftylist.com" },
           ].map((item) => {
             const style = {
               fontFamily: "'Inter', sans-serif", fontSize: 12,
@@ -621,6 +623,7 @@ function Footer() {
 export default function TheFiftyHomepage() {
   return (
     <>
+      <PageMeta page="home" />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

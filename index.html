@@ -3,7 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Fifty</title>
+    <meta name="theme-color" content="#1A1A1A" />
+
+    <!-- Favicons / icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Per-page <title>/<meta>/canonical/OG/Twitter/JSON-LD are injected by react-helmet-async via <PageMeta />.
+         At prerender time these become static; at runtime Helmet manages them on route change. -->
+
     <style>
       /* Prevent accidental horizontal page scroll on mobile */
       html, body { overflow-x: hidden; }
@@ -27,20 +37,11 @@
         .fifty-hero-content { padding: 0 20px 40px !important; }
       }
     </style>
+
+    <!-- GA4 is loaded from main.jsx using VITE_GA4_ID env var (no-op if unset). -->
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      // GitHub Pages SPA routing support
-      (function(l) {
-        if (l.search[1] === '/') {
-          var decoded = l.search.slice(1).split('&').map(function(s) {
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
-        }
-      }(window.location))
-    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

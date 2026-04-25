@@ -10,6 +10,15 @@ export default function PasswordGate({ children }) {
 
   useEffect(() => {
     try {
+      // Bypass for prerender: SEO crawlers and our build-time prerender need to see content.
+      // vite-plugin-prerender uses puppeteer; we set a custom UA for it (see vite.config.js).
+      if (
+        typeof navigator !== "undefined" &&
+        /Prerender|HeadlessChrome|jsdom/i.test(navigator.userAgent || "")
+      ) {
+        setUnlocked(true);
+        return;
+      }
       if (sessionStorage.getItem(STORAGE_KEY) === "yes") {
         setUnlocked(true);
       }

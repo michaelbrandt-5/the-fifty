@@ -80,7 +80,11 @@
       "Bash(curl -s --max-time 8 https://thefiftylist.com)",
       "Bash(curl -sI --max-time 8 https://thefiftylist.com/favicon.svg)",
       "Bash(curl -sI --max-time 8 https://thefiftylist.com/robots.txt)",
-      "Bash(curl -sI --max-time 8 https://thefiftylist.com/og/austin.png)"
+      "Bash(curl -sI --max-time 8 https://thefiftylist.com/og/austin.png)",
+      "Bash(curl -s --max-time 8 https://thefiftylist.com/austin)",
+      "Bash(curl -s --max-time 8 https://thefiftylist.com/new-york)",
+      "Bash(curl -s --max-time 8 https://thefiftylist.com/methodology)",
+      "Bash(curl -sI --max-time 8 https://thefiftylist.com/austin)"
     ]
   }
 }

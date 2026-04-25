@@ -125,45 +125,50 @@ async function snapshotRoute(browser, route) {
 }
 
 // Helmet (and our index.html fallbacks) can leave duplicate head tags after a
-// puppeteer snapshot. Keep only the LAST occurrence of each unique meta tag.
+// puppeteer snapshot. Keep only the FIRST occurrence of each unique tag —
+// react-helmet-async writes its tags before any defaults that our shell preserves.
 function dedupeHeadTags(html) {
   const headStart = html.indexOf("<head>");
   const headEnd = html.indexOf("</head>");
   if (headStart < 0 || headEnd < 0) return html;
   const before = html.slice(0, headStart + 6);
-  const head = html.slice(headStart + 6, headEnd);
+  let head = html.slice(headStart + 6, headEnd);
   const after = html.slice(headEnd);
 
-  // Keep the LAST <title>
-  const titleMatches = [...head.matchAll(/<title[^>]*>[\s\S]*?<\/title>/gi)];
-  let cleanedHead = head;
-  if (titleMatches.length > 1) {
-    const last = titleMatches[titleMatches.length - 1][0];
-    cleanedHead = cleanedHead.replace(/<title[^>]*>[\s\S]*?<\/title>/gi, "");
-    cleanedHead = cleanedHead.replace(/^/, last + "\n  ");
+  // Strip HTML comments from the head before any regex matching — comments
+  // can contain literal `<title>` etc. that confuses our deduper.
+  head = head.replace(/<!--[\s\S]*?-->/g, "");
+
+  // Keep the FIRST <title>
+  const titleRe = /<title[^>]*>[\s\S]*?<\/title>/gi;
+  const titles = [...head.matchAll(titleRe)];
+  if (titles.length > 1) {
+    const first = titles[0][0];
+    head = head.replace(titleRe, "");
+    head = first + "\n  " + head;
   }
 
-  // Dedupe meta tags by their identifying attribute
-  const dedupeBy = (regex, key) => {
-    const matches = [...cleanedHead.matchAll(regex)];
+  // Dedupe meta/link tags by their identifying attribute — keep the first one.
+  const dedupeBy = (regex) => {
+    const matches = [...head.matchAll(regex)];
+    if (matches.length === 0) return;
     const seen = new Map();
-    matches.forEach((m, i) => {
+    for (const m of matches) {
       const id = m[1];
-      seen.set(id, { tag: m[0], idx: i });
-    });
+      if (!seen.has(id)) seen.set(id, m[0]); // first wins
+    }
     if (matches.length > seen.size) {
-      // Strip all, then re-insert kept ones in head
-      cleanedHead = cleanedHead.replace(regex, "");
-      const kept = [...seen.values()].map((v) => v.tag).join("\n  ");
-      cleanedHead = kept + "\n  " + cleanedHead;
+      head = head.replace(regex, "");
+      const kept = [...seen.values()].join("\n  ");
+      head = kept + "\n  " + head;
     }
   };
 
-  dedupeBy(/<meta name="(description|twitter:[^"]+)"[^>]*>/gi, "name");
-  dedupeBy(/<meta property="(og:[^"]+)"[^>]*>/gi, "property");
-  dedupeBy(/<link rel="(canonical)"[^>]*>/gi, "rel");
+  dedupeBy(/<meta name="(description|twitter:[^"]+)"[^>]*>/gi);
+  dedupeBy(/<meta property="(og:[^"]+)"[^>]*>/gi);
+  dedupeBy(/<link rel="(canonical)"[^>]*>/gi);
 
-  return before + cleanedHead + after;
+  return before + head + after;
 }
 
 async function main() {

@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:full": "vite build && node scripts/prerender.mjs",
+    "build": "vite build && node scripts/prerender.mjs",
+    "build:spa": "vite build",
     "prerender": "node scripts/prerender.mjs",
     "preview": "vite preview"
   },
@@ -23,8 +23,10 @@
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
+    "@sparticuz/chromium-min": "^147.0.2",
     "@vitejs/plugin-react": "^6.0.1",
     "puppeteer": "^24.42.0",
+    "puppeteer-core": "^24.42.0",
     "sharp": "^0.34.5",
     "vite": "^8.0.8"
   }

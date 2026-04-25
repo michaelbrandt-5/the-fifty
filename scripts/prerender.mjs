@@ -1,15 +1,40 @@
-// Custom prerender using modern puppeteer.
-// Spins up a static server pointing at dist/, navigates to each route, waits
-// for the React app to fire 'render-event', and snapshots the rendered HTML.
+// Custom prerender — works both locally and on Vercel's build sandbox.
 //
-// Why custom: vite-plugin-prerender's bundled puppeteer is ancient (Chrome r686378)
-// and fails on modern systems. Our local puppeteer brings a working Chromium.
+// Locally: uses regular `puppeteer` (which bundles its own Chromium).
+// On Vercel: uses `puppeteer-core` + `@sparticuz/chromium-min`. Vercel's
+// build sandbox is missing the system libs (libnspr4 etc.) that bundled
+// Chromium needs; @sparticuz/chromium ships a Chromium build that has them.
 
 import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
 import { fileURLToPath } from "node:url";
-import puppeteer from "puppeteer";
+
+// Vercel sets VERCEL=1 in the build environment.
+const IS_VERCEL = !!process.env.VERCEL;
+
+// Pinned to match @sparticuz/chromium-min major version (147.0.2 at time of writing).
+const CHROMIUM_PACK_URL =
+  "https://github.com/Sparticuz/chromium/releases/download/v147.0.2/chromium-v147.0.2-pack.x64.tar";
+
+async function getBrowser() {
+  if (IS_VERCEL) {
+    const [{ default: chromium }, { default: puppeteer }] = await Promise.all([
+      import("@sparticuz/chromium-min"),
+      import("puppeteer-core"),
+    ]);
+    return puppeteer.launch({
+      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+      executablePath: await chromium.executablePath(CHROMIUM_PACK_URL),
+      headless: chromium.headless,
+    });
+  }
+  const { default: puppeteer } = await import("puppeteer");
+  return puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
+}
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = path.join(ROOT, "dist");
@@ -148,12 +173,9 @@ async function main() {
   }
 
   const server = await startServer();
-  console.log(`Static server listening on ${ORIGIN}`);
+  console.log(`Static server listening on ${ORIGIN} (env: ${IS_VERCEL ? "vercel" : "local"})`);
 
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
+  const browser = await getBrowser();
 
   let succeeded = 0;
   let failed = 0;

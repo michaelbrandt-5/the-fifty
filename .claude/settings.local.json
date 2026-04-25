@@ -74,7 +74,13 @@
       "Bash(dig +short www.thefiftylist.com)",
       "Bash(curl -sI -L --max-time 8 https://thefiftylist.com)",
       "Bash(curl -s https://thefiftylist.com)",
-      "Bash(awk 'BEGIN{in_head=0} /<head>/{in_head=1} /<\\\\/head>/{in_head=0; print; exit} in_head{print}' /Users/michaelbrandt/Documents/Claude/Projects/FIfty/dist/index.html)"
+      "Bash(awk 'BEGIN{in_head=0} /<head>/{in_head=1} /<\\\\/head>/{in_head=0; print; exit} in_head{print}' /Users/michaelbrandt/Documents/Claude/Projects/FIfty/dist/index.html)",
+      "Bash(curl -sI --max-time 8 https://www.thefiftylist.com)",
+      "Bash(curl -sI --max-time 8 https://thefiftylist.com)",
+      "Bash(curl -s --max-time 8 https://thefiftylist.com)",
+      "Bash(curl -sI --max-time 8 https://thefiftylist.com/favicon.svg)",
+      "Bash(curl -sI --max-time 8 https://thefiftylist.com/robots.txt)",
+      "Bash(curl -sI --max-time 8 https://thefiftylist.com/og/austin.png)"
     ]
   }
 }

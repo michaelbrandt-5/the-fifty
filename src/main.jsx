@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 
-// GA4 — loads only when VITE_GA4_ID env var is set at build time.
-// Pageview events are fired manually by <PageviewTracker /> on each route change.
-const GA4_ID = import.meta.env.VITE_GA4_ID;
+// GA4 — measurement ID hardcoded with env var override. GA4 IDs are public
+// (visible in every served HTML), so committing them is fine. Override with
+// VITE_GA4_ID at build time, or set to "" to disable.
+const GA4_ID = import.meta.env.VITE_GA4_ID ?? "G-XLTG16BJ0B";
 if (typeof window !== "undefined" && GA4_ID) {
   const s = document.createElement("script");
   s.async = true;

@@ -57,10 +57,12 @@ const ROUTES = [
   "/denver",
 ];
 
-// Static server — serves files from dist/, falls back to index.html for SPA routes.
-function startServer() {
+// Static server — serves files from dist/. For any HTML route (/, /austin, etc.)
+// it returns the ORIGINAL pre-prerender SPA shell, never any HTML we may have
+// written during this prerender pass. This prevents stale Helmet tags from a
+// previously-snapshotted route from contaminating the next snapshot.
+function startServer(spaShell) {
   const mime = {
-    ".html": "text/html; charset=utf-8",
     ".js": "application/javascript; charset=utf-8",
     ".css": "text/css; charset=utf-8",
     ".json": "application/json; charset=utf-8",
@@ -74,16 +76,23 @@ function startServer() {
     ".txt": "text/plain; charset=utf-8",
   };
   const server = http.createServer((req, res) => {
-    let urlPath = decodeURIComponent(req.url.split("?")[0]);
-    let filePath = path.join(DIST, urlPath);
-    if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
-      filePath = path.join(filePath, "index.html");
+    const urlPath = decodeURIComponent(req.url.split("?")[0]);
+    const ext = path.extname(urlPath).toLowerCase();
+
+    // For any route without a file extension (or .html), serve the SPA shell.
+    if (!ext || ext === ".html") {
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(spaShell);
+      return;
     }
+
+    // Otherwise serve the file from disk.
+    const filePath = path.join(DIST, urlPath);
     if (!fs.existsSync(filePath)) {
-      // SPA fallback
-      filePath = path.join(DIST, "index.html");
+      res.writeHead(404);
+      res.end();
+      return;
     }
-    const ext = path.extname(filePath).toLowerCase();
     const type = mime[ext] || "application/octet-stream";
     res.writeHead(200, { "Content-Type": type });
     fs.createReadStream(filePath).pipe(res);
@@ -172,12 +181,18 @@ function dedupeHeadTags(html) {
 }
 
 async function main() {
-  if (!fs.existsSync(path.join(DIST, "index.html"))) {
+  const shellPath = path.join(DIST, "index.html");
+  if (!fs.existsSync(shellPath)) {
     console.error("dist/index.html not found. Run `vite build` first.");
     process.exit(1);
   }
 
-  const server = await startServer();
+  // Capture the SPA shell ONCE before we start writing prerendered output.
+  // The server returns this for every HTML route — guarantees each route's
+  // snapshot starts from a clean shell with no stale Helmet tags.
+  const spaShell = fs.readFileSync(shellPath, "utf8");
+
+  const server = await startServer(spaShell);
   console.log(`Static server listening on ${ORIGIN} (env: ${IS_VERCEL ? "vercel" : "local"})`);
 
   const browser = await getBrowser();

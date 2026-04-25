@@ -84,7 +84,8 @@
       "Bash(curl -s --max-time 8 https://thefiftylist.com/austin)",
       "Bash(curl -s --max-time 8 https://thefiftylist.com/new-york)",
       "Bash(curl -s --max-time 8 https://thefiftylist.com/methodology)",
-      "Bash(curl -sI --max-time 8 https://thefiftylist.com/austin)"
+      "Bash(curl -sI --max-time 8 https://thefiftylist.com/austin)",
+      "Bash(awk '/<head>/{found=1} found{print} /<\\\\/head>/{exit}' /Users/michaelbrandt/Documents/Claude/Projects/FIfty/dist/austin/index.html)"
     ]
   }
 }

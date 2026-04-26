@@ -101,7 +101,9 @@
       "Bash(curl -s --max-time 5 https://thefiftylist.com/portland)",
       "Bash(curl -s --max-time 5 https://thefiftylist.com/denver)",
       "Bash(grep -oE 'Death[^\"]{0,15}Denver')",
-      "Bash(node scripts/geocode-entries.mjs --city portland)"
+      "Bash(node scripts/geocode-entries.mjs --city portland)",
+      "Bash(curl -s --max-time 6 https://thefiftylist.com/austin)",
+      "Bash(grep -oE 'focus-visible[^}]{0,80}')"
     ]
   }
 }

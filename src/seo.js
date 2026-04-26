@@ -37,6 +37,30 @@ export const ROUTES = {
     ogImage: "/og/home.png",
     ogType: "article",
   },
+  about: {
+    path: "/about",
+    title: "About — The Fifty",
+    description:
+      "Why The Fifty exists, who's behind it, and how to reach us. A small editorial project run by people who actually live in the cities they cover.",
+    ogImage: "/og/home.png",
+    ogType: "article",
+  },
+  privacy: {
+    path: "/privacy",
+    title: "Privacy Policy — The Fifty",
+    description:
+      "What information The Fifty collects, how we use it, and the choices you have. Plain English, no dark patterns. We try to collect as little as possible.",
+    ogImage: "/og/home.png",
+    ogType: "article",
+  },
+  terms: {
+    path: "/terms",
+    title: "Terms of Service — The Fifty",
+    description:
+      "The terms governing use of The Fifty. What we offer, what you can and can't do with our content, and the standard legal protections.",
+    ogImage: "/og/home.png",
+    ogType: "article",
+  },
 };
 
 // Cities — keyed by slug. `cityName` is the display name, `headerTagline` is the

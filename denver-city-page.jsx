@@ -1062,10 +1062,27 @@ const Footer = () => {
       </div>
 
       {/* Bottom bar */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "24px 40px 32px", display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "24px 40px 32px", display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.04)", flexWrap: "wrap", gap: 16 }}>
         <span style={{ fontFamily: "'Georgia', serif", fontSize: 13, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>
           The Fifty
         </span>
+        <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
+          {[
+            { label: "About", to: "/about" },
+            { label: "Methodology", to: "/methodology" },
+            { label: "Photo Credits", to: "/photo-credits" },
+            { label: "Privacy", to: "/privacy" },
+            { label: "Terms", to: "/terms" },
+            { label: "Contact", href: "mailto:hello@thefiftylist.com" },
+          ].map((item) => {
+            const style = { fontFamily: "system-ui, sans-serif", fontSize: 11, color: "rgba(255,255,255,0.4)", textDecoration: "none", letterSpacing: 0.5, textTransform: "uppercase" };
+            return item.to ? (
+              <Link key={item.label} to={item.to} style={style}>{item.label}</Link>
+            ) : (
+              <a key={item.label} href={item.href} style={style}>{item.label}</a>
+            );
+          })}
+        </div>
         <span style={{ fontSize: 11, color: "rgba(255,255,255,0.2)" }}>
           &copy; 2026. All recommendations earned.
         </span>

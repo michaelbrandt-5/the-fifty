@@ -595,14 +595,16 @@ function Footer() {
         </div>
         <div style={{ display: "flex", gap: 32 }}>
           {[
-            { label: "About", href: "#how-it-works" },
+            { label: "About", to: "/about" },
             { label: "Methodology", to: "/methodology" },
             { label: "Photo Credits", to: "/photo-credits" },
+            { label: "Privacy", to: "/privacy" },
+            { label: "Terms", to: "/terms" },
             { label: "Contact", href: "mailto:hello@thefiftylist.com" },
           ].map((item) => {
             const style = {
               fontFamily: "'Inter', sans-serif", fontSize: 12,
-              color: "rgba(26,26,26,0.4)", textDecoration: "none",
+              color: "rgba(26,26,26,0.65)", textDecoration: "none",
               letterSpacing: "0.04em", textTransform: "uppercase",
             };
             return item.to ? (

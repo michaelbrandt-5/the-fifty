@@ -33,6 +33,9 @@ import Portland from "../portland-city-page.jsx";
 import Denver from "../denver-city-page.jsx";
 import Methodology from "../methodology-page.jsx";
 import PhotoCredits from "./PhotoCredits.jsx";
+import About from "./About.jsx";
+import Privacy from "./Privacy.jsx";
+import Terms from "./Terms.jsx";
 import PasswordGate from "./PasswordGate.jsx";
 
 function ScrollToTop() {
@@ -86,6 +89,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/denver" element={<Denver />} />
             <Route path="/methodology" element={<Methodology />} />
             <Route path="/photo-credits" element={<PhotoCredits />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </BrowserRouter>
       </PasswordGate>

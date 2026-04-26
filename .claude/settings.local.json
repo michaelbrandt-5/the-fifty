@@ -103,7 +103,8 @@
       "Bash(grep -oE 'Death[^\"]{0,15}Denver')",
       "Bash(node scripts/geocode-entries.mjs --city portland)",
       "Bash(curl -s --max-time 6 https://thefiftylist.com/austin)",
-      "Bash(grep -oE 'focus-visible[^}]{0,80}')"
+      "Bash(grep -oE 'focus-visible[^}]{0,80}')",
+      "Bash(git commit -m 'Remove inaccurate claims from /about page *)"
     ]
   }
 }

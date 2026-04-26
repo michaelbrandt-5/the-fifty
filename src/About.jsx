@@ -144,7 +144,7 @@ export default function AboutPage() {
               Each city gets exactly fifty picks. Not a top 10, which plays it safe. Not a top 200, which helps no one. Fifty is the number that forces hard choices — and hard choices are what make a list worth trusting. Every entry is a declaration: this is one of the fifty places that matter in this city, full stop.
             </p>
             <p style={{ marginBottom: 24 }}>
-              We don&rsquo;t cover chains. We don&rsquo;t take press dinners. Every place on every list has been visited at least twice, anonymously, by editors who actually live in the city. The picks are weighted toward how people actually use a city: about fifteen restaurants, eight bars, twelve experiences, with a real spread of neighborhoods and price points. The $4 taco stand sits next to the $200 tasting menu — because that&rsquo;s what a real city looks like.
+              We don&rsquo;t cover chains. The picks are weighted toward how people actually use a city: about fifteen restaurants, eight bars, twelve experiences, with a real spread of neighborhoods and price points. The $4 taco stand sits next to the $200 tasting menu — because that&rsquo;s what a real city looks like.
             </p>
             <p style={{ marginBottom: 24 }}>
               The point isn&rsquo;t to be encyclopedic. The point is to be right.
@@ -171,7 +171,7 @@ export default function AboutPage() {
               The Fifty is a small editorial project run by people who&rsquo;ve spent years professionally reading menus, walking neighborhoods, and asking locals for the spot they actually go to — not the spot that&rsquo;s easy to recommend.
             </p>
             <p style={{ marginBottom: 16 }}>
-              Each city has a lead editor who lives there or has lived there recently, plus a rotating bench of local contributors. Final cuts and copy are handled by a small editorial team that works city to city. Names go on every list.
+              Final cuts and copy are handled by a small editorial team that works city to city.
             </p>
             <p style={{ marginBottom: 16 }}>
               We&rsquo;re independent. We&rsquo;re not funded by tourism boards, hotel groups, or restaurant PR. Revenue comes from subscriptions and the occasional editorial partnership — clearly labeled when it exists, never influencing a pick.

@@ -148,7 +148,7 @@ function Hero() {
       }} />
       <p style={{
         fontFamily: "'Inter', system-ui, sans-serif", fontSize: 12,
-        letterSpacing: "0.2em", textTransform: "uppercase", color: "#B8864E",
+        letterSpacing: "0.2em", textTransform: "uppercase", color: "#8C6534",
         marginBottom: 32, fontWeight: 600,
       }}>A City Guide for People Who Don't Need a Guide</p>
       <h1 style={{
@@ -282,7 +282,7 @@ function CitiesSection() {
         <div>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-            textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 12,
+            textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 12,
           }}>Now Live</p>
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
@@ -292,7 +292,7 @@ function CitiesSection() {
         </div>
         <p style={{
           fontFamily: "'Inter', sans-serif", fontSize: 14,
-          color: "rgba(26,26,26,0.5)", maxWidth: 320, lineHeight: 1.6, margin: 0,
+          color: "rgba(26,26,26,0.65)", maxWidth: 320, lineHeight: 1.6, margin: 0,
         }}>
           Each list is independently researched, ruthlessly edited, and updated quarterly.
         </p>
@@ -380,7 +380,7 @@ function SampleSection() {
         <div style={{ marginBottom: 56 }}>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-            textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 12,
+            textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 12,
           }}>From the New York List</p>
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
@@ -410,7 +410,7 @@ function PhilosophySection() {
       <div style={{ textAlign: "center", marginBottom: 80 }}>
         <p style={{
           fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-          textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 12,
+          textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 12,
         }}>Our Philosophy</p>
         <h2 style={{
           fontFamily: "'Playfair Display', Georgia, serif",
@@ -438,7 +438,7 @@ function PhilosophySection() {
               }}>{item.title}</h3>
               <p style={{
                 fontFamily: "'Inter', sans-serif", fontSize: 15,
-                color: "rgba(26,26,26,0.6)", lineHeight: 1.7, margin: 0,
+                color: "rgba(26,26,26,0.65)", lineHeight: 1.7, margin: 0,
               }}>{item.body}</p>
             </div>
           </div>
@@ -479,7 +479,7 @@ function WaitlistSection() {
       <div style={{ maxWidth: 560, margin: "0 auto" }}>
         <p style={{
           fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-          textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 12,
+          textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 12,
         }}>Coming Soon</p>
         <h2 style={{
           fontFamily: "'Playfair Display', Georgia, serif",
@@ -521,6 +521,7 @@ function WaitlistSection() {
               <input
                 type="email"
                 placeholder="your@email.com"
+                aria-label="Email address for waitlist"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
@@ -560,7 +561,7 @@ function WaitlistSection() {
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: 14,
-              color: "#B8864E", margin: 0,
+              color: "#8C6534", margin: 0,
             }}>
               You're on the list{selectedCity ? ` for ${selectedCity}` : ""}. We'll be in touch.
             </p>

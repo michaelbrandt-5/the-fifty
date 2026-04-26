@@ -114,7 +114,7 @@ function Nav() {
           }}>About</Link>
           <Link to="/methodology" style={{
             fontFamily: "'Inter', system-ui, sans-serif", fontSize: 13,
-            color: "#B8864E", textDecoration: "none", letterSpacing: "0.04em",
+            color: "#8C6534", textDecoration: "none", letterSpacing: "0.04em",
             textTransform: "uppercase", fontWeight: 600, opacity: 1,
           }}>Methodology</Link>
           <button style={{
@@ -136,19 +136,19 @@ function Hero() {
     }}>
       <Link to="/" style={{
         fontFamily: "'Inter', sans-serif", fontSize: 12, letterSpacing: "0.12em",
-        textTransform: "uppercase", color: "rgba(26,26,26,0.5)",
+        textTransform: "uppercase", color: "rgba(26,26,26,0.65)",
         textDecoration: "none", marginBottom: 32, display: "inline-block",
       }}>← Back to Home</Link>
       <p style={{
         fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-        textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 20,
+        textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 20,
       }}>Methodology</p>
       <h1 style={{
         fontFamily: "'Playfair Display', Georgia, serif",
         fontSize: "clamp(44px, 7vw, 84px)", fontWeight: 700,
         color: "#1A1A1A", lineHeight: 1.0, letterSpacing: "-0.03em", margin: 0,
       }}>
-        How we build<br/>a list worth<br/><em style={{ color: "#B8864E", fontStyle: "italic" }}>trusting</em>.
+        How we build<br/>a list worth<br/><em style={{ color: "#8C6534", fontStyle: "italic" }}>trusting</em>.
       </h1>
       <p style={{
         fontFamily: "'Playfair Display', Georgia, serif",
@@ -188,7 +188,7 @@ function StatsBar() {
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: 11,
               letterSpacing: "0.15em", textTransform: "uppercase",
-              color: "rgba(26,26,26,0.5)", marginTop: 8,
+              color: "rgba(26,26,26,0.65)", marginTop: 8,
             }}>{s.label}</p>
           </div>
         ))}
@@ -203,7 +203,7 @@ function PrinciplesSection() {
       <div style={{ marginBottom: 64, maxWidth: 560 }}>
         <p style={{
           fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-          textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 16,
+          textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 16,
         }}>Editorial Principles</p>
         <h2 style={{
           fontFamily: "'Playfair Display', Georgia, serif",
@@ -221,7 +221,7 @@ function PrinciplesSection() {
           }}>
             <p style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: 20, color: "#B8864E", margin: 0, fontStyle: "italic",
+              fontSize: 20, color: "#8C6534", margin: 0, fontStyle: "italic",
             }}>{p.number}</p>
             <h3 style={{
               fontFamily: "'Playfair Display', Georgia, serif",
@@ -248,7 +248,7 @@ function ProcessSection() {
         <div style={{ marginBottom: 64, maxWidth: 560 }}>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-            textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 16,
+            textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 16,
           }}>The Process</p>
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
@@ -267,7 +267,7 @@ function ProcessSection() {
               }}>
                 <span style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
-                  fontSize: 56, fontWeight: 700, color: "#B8864E", lineHeight: 1,
+                  fontSize: 56, fontWeight: 700, color: "#8C6534", lineHeight: 1,
                 }}>{p.step}</span>
                 {i < PROCESS.length - 1 && (
                   <span style={{
@@ -295,7 +295,7 @@ function CategoriesSection() {
   const categories = [
     { name: "Eat", count: "~15", color: "rgb(168,60,50)", note: "Fine dining to hole-in-the-wall." },
     { name: "Drink", count: "~8", color: "rgb(150,80,90)", note: "Bars, wine bars, cocktail rooms." },
-    { name: "Coffee", count: "~5", color: "rgb(180,130,80)", note: "Roasters, cafés, third-wave." },
+    { name: "Coffee", count: "~5", color: "rgb(150,100,55)", note: "Roasters, cafés, third-wave." },
     { name: "Stay", count: "~4", color: "rgb(55,90,100)", note: "Hotels with point of view." },
     { name: "Experience", count: "~12", color: "rgb(90,110,70)", note: "Museums, parks, live music." },
     { name: "Shop", count: "~6", color: "rgb(140,100,130)", note: "Boutiques, bookstores, records." },
@@ -305,7 +305,7 @@ function CategoriesSection() {
       <div style={{ marginBottom: 56, maxWidth: 560 }}>
         <p style={{
           fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-          textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 16,
+          textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 16,
         }}>The Balance</p>
         <h2 style={{
           fontFamily: "'Playfair Display', Georgia, serif",
@@ -314,7 +314,7 @@ function CategoriesSection() {
         }}>Six categories. Fifty picks.</h2>
         <p style={{
           fontFamily: "'Inter', sans-serif", fontSize: 15,
-          color: "rgba(26,26,26,0.6)", lineHeight: 1.65, marginTop: 20,
+          color: "rgba(26,26,26,0.65)", lineHeight: 1.65, marginTop: 20,
         }}>
           Every city gets the same category weights. The mix reflects how people actually spend time in a place — more meals than hotels, more things to do than things to buy.
         </p>
@@ -356,7 +356,7 @@ function FAQSection() {
       <div style={{ marginBottom: 48 }}>
         <p style={{
           fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-          textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 16,
+          textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 16,
         }}>Questions</p>
         <h2 style={{
           fontFamily: "'Playfair Display', Georgia, serif",
@@ -396,7 +396,7 @@ function CTASection() {
         fontFamily: "'Playfair Display', Georgia, serif",
         fontSize: "clamp(32px, 4.5vw, 48px)", fontWeight: 700,
         color: "#1A1A1A", margin: 0, lineHeight: 1.15, letterSpacing: "-0.02em",
-      }}>Now, <em style={{ fontStyle: "italic", color: "#B8864E" }}>go use</em> the lists.</h2>
+      }}>Now, <em style={{ fontStyle: "italic", color: "#8C6534" }}>go use</em> the lists.</h2>
       <p style={{
         fontFamily: "'Inter', sans-serif", fontSize: 15,
         color: "rgba(26,26,26,0.55)", lineHeight: 1.65, maxWidth: 520,

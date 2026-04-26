@@ -571,7 +571,7 @@ const ENTRIES = [
 
 const getCategoryColor = (cat) => {
   const map = {
-    Coffee: { bg: "rgb(180,130,80)", text: "#fff" },
+    Coffee: { bg: "rgb(150,100,55)", text: "#fff" },
     Eat: { bg: "rgb(168,60,50)", text: "#fff" },
     Stay: { bg: "rgb(55,90,100)", text: "#fff" },
     Experience: { bg: "rgb(90,110,70)", text: "#fff" },
@@ -695,7 +695,7 @@ const Hero = () => (
       <div style={{ display: "flex", gap: 28, fontSize: 13, color: "rgba(245,240,232,0.7)", letterSpacing: 0.5 }}>
         <Link to="/#cities" style={{ cursor: "pointer", color: "inherit", textDecoration: "none" }}>Cities</Link>
         <Link to="/#how-it-works" style={{ cursor: "pointer", color: "inherit", textDecoration: "none" }}>About</Link>
-        <span style={{ cursor: "pointer" }} onClick={() => document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" })}>Newsletter</span>
+        <button type="button" onClick={() => document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" })} style={{ background: "none", border: "none", padding: 0, font: "inherit", color: "inherit", letterSpacing: "inherit", cursor: "pointer" }}>Newsletter</button>
       </div>
     </nav>
 
@@ -1110,6 +1110,7 @@ function NewsletterCapture() {
               <input
                 type="email"
                 placeholder="your@email.com"
+                aria-label="Email address for newsletter"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
@@ -1149,7 +1150,7 @@ function NewsletterCapture() {
           }}>
             <p style={{
               fontFamily: "system-ui, sans-serif", fontSize: 14,
-              color: "#B8864E", margin: 0,
+              color: "#8C6534", margin: 0,
             }}>
               You're on the list. We'll let you know when the next city drops.
             </p>

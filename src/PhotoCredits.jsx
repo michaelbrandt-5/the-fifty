@@ -76,7 +76,7 @@ export default function PhotoCredits() {
         <main style={{ maxWidth: 880, margin: "0 auto", padding: "140px 24px 80px" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: "0.2em",
-            textTransform: "uppercase", color: "#B8864E", fontWeight: 600, marginBottom: 16,
+            textTransform: "uppercase", color: "#8C6534", fontWeight: 600, marginBottom: 16,
           }}>Image attribution</p>
           <h1 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
@@ -93,10 +93,10 @@ export default function PhotoCredits() {
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: 14, lineHeight: 1.65,
-            color: "rgba(26,26,26,0.5)", margin: "0 0 56px", maxWidth: 640,
+            color: "rgba(26,26,26,0.65)", margin: "0 0 56px", maxWidth: 640,
           }}>
             If you took one of the photos below and would like the credit changed or a photo removed, please email{" "}
-            <a href="mailto:hello@thefiftylist.com" style={{ color: "#B8864E", textDecoration: "underline" }}>
+            <a href="mailto:hello@thefiftylist.com" style={{ color: "#8C6534", textDecoration: "underline" }}>
               hello@thefiftylist.com
             </a>{" "}
             and we'll respond within 48 hours.
@@ -157,7 +157,7 @@ export default function PhotoCredits() {
                               href={photo.creditUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              style={{ color: "#B8864E", textDecoration: "none" }}
+                              style={{ color: "#8C6534", textDecoration: "none" }}
                             >
                               {photo.credit}
                             </a>

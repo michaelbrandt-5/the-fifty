@@ -67,7 +67,7 @@ export default function PasswordGate({ children }) {
             fontWeight: 600,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "#B8864E",
+            color: "#8C6534",
             marginBottom: 24,
           }}
         >

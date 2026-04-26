@@ -174,6 +174,9 @@ export default function AboutPage() {
               Final cuts and copy are handled by a small editorial team that works city to city.
             </p>
             <p style={{ marginBottom: 16 }}>
+              Each city&rsquo;s list is built through deep research — guidebooks, food writers we trust, conversations with locals, and visits when we can make them. We update quarterly as cities change and as our knowledge sharpens.
+            </p>
+            <p style={{ marginBottom: 16 }}>
               We&rsquo;re independent. We&rsquo;re not funded by tourism boards, hotel groups, or restaurant PR. Revenue comes from subscriptions and the occasional editorial partnership — clearly labeled when it exists, never influencing a pick.
             </p>
           </div>

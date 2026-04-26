@@ -104,7 +104,8 @@
       "Bash(node scripts/geocode-entries.mjs --city portland)",
       "Bash(curl -s --max-time 6 https://thefiftylist.com/austin)",
       "Bash(grep -oE 'focus-visible[^}]{0,80}')",
-      "Bash(git commit -m 'Remove inaccurate claims from /about page *)"
+      "Bash(git commit -m 'Remove inaccurate claims from /about page *)",
+      "Bash(git commit -m 'Add research-process paragraph to /about *)"
     ]
   }
 }

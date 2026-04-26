@@ -12,7 +12,7 @@ const CITY_LOCATIONS = LOCATIONS["los-angeles"] || {};
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const CATEGORIES = ["All", "Eat", "Drink", "Coffee", "Stay", "Experience", "Shop"];
-const NEIGHBORHOODS = ["All Neighborhoods", "Silver Lake", "Echo Park", "Los Feliz", "Arts District", "Venice", "Highland Park", "Santa Monica", "West Hollywood", "Koreatown", "Culver City"];
+const NEIGHBORHOODS = ["All Neighborhoods", "Silver Lake", "Echo Park", "Los Feliz", "Arts District", "Venice", "Highland Park", "Santa Monica", "West Hollywood", "Koreatown", "Culver City", "Downtown"];
 
 const ENTRIES = [
   {
@@ -281,11 +281,11 @@ const ENTRIES = [
   },
   {
     id: 25,
-    name: "Shibumi",
+    name: "Kato",
     category: "Eat",
-    neighborhood: "Arts District",
-    description: "A kappo-style Japanese restaurant where chef David Schlosser cooks a multi-course meal in front of you with quiet, almost meditative precision. The counter seats ten, the ingredients are flown in from Tsukiji, and every dish arrives with the kind of intentionality that makes you slow down and pay attention. It's not cheap. It's not supposed to be. This is a meal you remember.",
-    signature: "The omakase at the counter. Book well in advance and clear your evening — this is not a meal you rush.",
+    neighborhood: "Downtown",
+    description: "Jonathan Yao's Taiwanese-American tasting menu and the most consequential restaurant in Los Angeles right now. Two Michelin stars, a James Beard award, and a kitchen that translates a Taipei-American childhood into food no one else is making. The room is small, the courses move fast, and every plate is built around an obsessive attention to one or two ingredients done perfectly.",
+    signature: "The bar seats are the move — you watch the kitchen and the courses come fast. Reservations open monthly and disappear in minutes.",
     action: "Reserve",
     actionType: "reserve",
     image: null,
@@ -512,11 +512,11 @@ const ENTRIES = [
   },
   {
     id: 46,
-    name: "Stumptown Coffee Roasters",
+    name: "Verve Coffee Roasters",
     category: "Coffee",
     neighborhood: "Arts District",
-    description: "The Arts District outpost of Portland's pioneering roaster occupies a bright, airy space that invites lingering. The beans are sourced with care, the cold brew is smooth and strong, and the baristas bring a Pacific Northwest earnestness that cuts through LA's performative cool. It's a reliable, excellent cup every single time.",
-    signature: "The cold brew on nitro. Sit at the long communal table with a book and let the afternoon dissolve.",
+    description: "The Santa Cruz-born roaster's Arts District flagship — a wide, sun-drenched bar inside ROW DTLA where the coffee program is as serious as anywhere in the city. Single-origin pour-overs from Burundi to Costa Rica, an excellent espresso, and a refusal to follow trends just because they're trends. The kind of place where the barista will actually talk to you about what you're tasting.",
+    signature: "Get the seasonal pour-over and ask what the roaster's been working on lately.",
     action: "Get Directions",
     actionType: "directions",
     image: null,

@@ -85,7 +85,19 @@
       "Bash(curl -s --max-time 8 https://thefiftylist.com/new-york)",
       "Bash(curl -s --max-time 8 https://thefiftylist.com/methodology)",
       "Bash(curl -sI --max-time 8 https://thefiftylist.com/austin)",
-      "Bash(awk '/<head>/{found=1} found{print} /<\\\\/head>/{exit}' /Users/michaelbrandt/Documents/Claude/Projects/FIfty/dist/austin/index.html)"
+      "Bash(awk '/<head>/{found=1} found{print} /<\\\\/head>/{exit}' /Users/michaelbrandt/Documents/Claude/Projects/FIfty/dist/austin/index.html)",
+      "Bash(node /Users/michaelbrandt/Documents/Claude/Projects/FIfty/scripts/spell-check.mjs)",
+      "Bash(sed -n '372,378p' /Users/michaelbrandt/Documents/Claude/Projects/FIfty/austin-city-page.jsx)",
+      "Bash(sed -n '85,93p' /Users/michaelbrandt/Documents/Claude/Projects/FIfty/nashville-city-page.jsx)",
+      "Bash(sed -n '195,203p' /Users/michaelbrandt/Documents/Claude/Projects/FIfty/los-angeles-city-page.jsx)",
+      "Bash(sed -n '548,556p' /Users/michaelbrandt/Documents/Claude/Projects/FIfty/seattle-city-page.jsx)",
+      "Bash(node /Users/michaelbrandt/Documents/Claude/Projects/FIfty/scripts/check-business-status.mjs)",
+      "Bash(node /Users/michaelbrandt/Documents/Claude/Projects/FIfty/scripts/apply-replacements.mjs)",
+      "Bash(node /Users/michaelbrandt/Documents/Claude/Projects/FIfty/scripts/extract-entries.mjs)",
+      "Bash(node scripts/fetch-photos.mjs)",
+      "Bash(node scripts/geocode-entries.mjs)",
+      "Bash(node scripts/geocode-entries.mjs --city miami)",
+      "Bash(node /tmp/category-mix.mjs)"
     ]
   }
 }

@@ -12,7 +12,7 @@ const CITY_LOCATIONS = LOCATIONS["portland"] || {};
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const CATEGORIES = ["All", "Eat", "Drink", "Coffee", "Stay", "Experience", "Shop"];
-const NEIGHBORHOODS = ["All Neighborhoods", "Alberta Arts District", "Division", "Hawthorne", "Pearl District", "Mississippi", "Sellwood", "Northwest", "St. Johns", "Foster-Powell", "Montavilla"];
+const NEIGHBORHOODS = ["All Neighborhoods", "Alberta Arts District", "Division", "Hawthorne", "Pearl District", "Mississippi", "Sellwood", "Northwest", "St. Johns", "Foster-Powell", "Montavilla", "NE Portland"];
 
 const ENTRIES = [
   {
@@ -105,11 +105,11 @@ const ENTRIES = [
   },
   {
     id: 9,
-    name: "Pok Pok",
+    name: "Hat Yai",
     category: "Eat",
-    neighborhood: "Division",
-    description: "Andy Ricker closed the New York outpost, but the Portland original endures — a ramshackle collection of huts and patios serving northern Thai street food that changed how America thinks about Southeast Asian cooking. The fish sauce wings are iconic for a reason, but the deeper cuts — the papaya pok pok, the khao soi — are what keep regulars coming back year after year.",
-    signature: "The Vietnamese fish sauce wings. Full stop. Order a drinking vinegar on the side and sit on the covered patio even if it's raining.",
+    neighborhood: "NE Portland",
+    description: "Earl Ninsom's southern Thai spot has done what no one in Portland thought possible after Pok Pok closed — it took the city's complicated, hard-earned love for serious Thai food and gave it a new home. The fried chicken with sticky rice and curry is the best version of itself you'll find outside Hat Yai. The roti stays crisp under the curry, which is the test.",
+    signature: "Get the fried chicken set with sticky rice and the southern curry. Half order of khanom jeen if you're with a group.",
     action: "Get Directions",
     actionType: "directions",
     image: null,

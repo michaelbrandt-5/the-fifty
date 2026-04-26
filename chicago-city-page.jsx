@@ -12,7 +12,7 @@ const CITY_LOCATIONS = LOCATIONS["chicago"] || {};
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const CATEGORIES = ["All", "Eat", "Drink", "Coffee", "Stay", "Experience", "Shop"];
-const NEIGHBORHOODS = ["All Neighborhoods", "West Loop", "Logan Square", "Wicker Park", "Lincoln Park", "Pilsen", "Hyde Park", "Andersonville", "Old Town", "Bucktown", "Humboldt Park"];
+const NEIGHBORHOODS = ["All Neighborhoods", "West Loop", "Logan Square", "Wicker Park", "Lincoln Park", "Pilsen", "Hyde Park", "Andersonville", "Old Town", "Bucktown", "Humboldt Park", "Ukrainian Village"];
 
 const ENTRIES = [
   {
@@ -94,24 +94,24 @@ const ENTRIES = [
   },
   {
     id: 8,
-    name: "Violet Hour",
+    name: "Sportsman's Club",
     category: "Drink",
-    neighborhood: "Wicker Park",
-    description: "The cocktail bar that changed drinking in Chicago. There's no sign — just a painted mural on Division Street and a door that opens into a dark, candlelit room with high-backed booths and bartenders who treat every drink like it matters. No standing. No Bud Light. No exceptions. The rules are strict because the cocktails are that good.",
-    signature: "Tell your bartender what spirit you like and one adjective for the flavor you want. They'll build something perfect from scratch.",
+    neighborhood: "Ukrainian Village",
+    description: "The Ukrainian Village neighborhood bar that doubles as one of Chicago's most quietly excellent cocktail rooms. Looks like a regular's spot — long bar, a few booths, easy lighting — but the menu is structured around old-fashioned hospitality and a rotating guest-bartender program that pulls in talent from across the country. No theatrics, no velvet curtain, just a great drink and a seat at the bar.",
+    signature: "Sit at the bar and tell them you want something stirred. Ask about the guest-bartender residency — there's usually a special menu running.",
     action: "Get Directions",
     actionType: "directions",
     image: null,
   },
   {
     id: 9,
-    name: "Promontory",
-    category: "Experience",
+    name: "Virtue Restaurant",
+    category: "Eat",
     neighborhood: "Hyde Park",
-    description: "A multi-level venue in Hyde Park that splits the difference between concert hall, bar, and restaurant — and does all three well. The music programming is excellent and eclectic: jazz one night, Afrobeat the next, a DJ set after that. The space itself is warm and woody, with a mezzanine that gives you the perfect vantage point. Hyde Park's cultural anchor.",
-    signature: "Check the calendar for the jazz nights. Grab a spot on the mezzanine balcony with a cocktail and just listen.",
-    action: "Learn More",
-    actionType: "learn",
+    description: "Erick Williams's love letter to American Southern cooking, lived through a Black Chicago lens. The smoked half-chicken with grits, the Gulf shrimp, the buttermilk pie — every plate is built on serious technique and zero affectation. Hyde Park has had a Virtue-shaped hole in its dining scene for decades; now it doesn't.",
+    signature: "Get the cornmeal-crusted catfish or the smoked half-chicken. Don't skip the deviled eggs to start.",
+    action: "Reserve",
+    actionType: "reserve",
     image: null,
   },
   {
@@ -171,11 +171,11 @@ const ENTRIES = [
   },
   {
     id: 15,
-    name: "Lost Lake",
+    name: "Scofflaw",
     category: "Drink",
     neighborhood: "Logan Square",
-    description: "A tiki bar in Logan Square that takes the craft seriously without losing the fun. The drinks are complex — house-made syrups, fresh juices, obscure rums — but the room is pure escapism: bamboo, puffer fish lamps, and a soundtrack that swings between exotica and hip-hop. It's the kind of bar where one drink becomes three and nobody regrets it.",
-    signature: "The Jet Pilot or the Zombie. Both are strong enough to be dangerous. Pace yourself; the rum sneaks up.",
+    description: "Logan Square's gin bar — and yes, just gin, with the obsessive depth that any single-spirit room demands. The cocktail menu runs from pre-Prohibition classics to inventive house drinks, all built on a back-bar that puts most cocktail programs to shame. Cozy, dimly-lit, the kind of place where the bartender remembers what you ordered last time.",
+    signature: "Order the Daffodil. If you don't know gin yet, tell them what you do drink and let them work.",
     action: "Get Directions",
     actionType: "directions",
     image: null,
@@ -369,11 +369,11 @@ const ENTRIES = [
   },
   {
     id: 33,
-    name: "Galerie F",
+    name: "Wolfbait & B-girls",
     category: "Shop",
-    neighborhood: "Humboldt Park",
-    description: "A printmaking gallery and shop in Humboldt Park that specializes in gig posters, screen prints, and street art. The walls rotate constantly, showcasing Chicago and international artists who work in the space where punk, hip-hop, and fine art collide. Everything on the wall is for sale, and the prices are surprisingly reasonable for original art.",
-    signature: "Ask about the Chicago artist prints. The gig posters from local venues are collectible and start around twenty bucks.",
+    neighborhood: "Logan Square",
+    description: "A Logan Square shop that's been quietly defining Chicago design taste for over a decade. Everything is locally made — ceramics from Pilsen, candles from Logan, prints from artists you probably know on Instagram — and the curation is so dialed-in you trust the buyers without asking questions. Two women run it. They know every maker.",
+    signature: "Look for the small ceramics shelf — the changing rotation of Chicago potters is the best in the city.",
     action: "Get Directions",
     actionType: "directions",
     image: null,
@@ -424,11 +424,11 @@ const ENTRIES = [
   },
   {
     id: 38,
-    name: "Aya Pastry",
+    name: "Sawada Coffee",
     category: "Coffee",
     neighborhood: "West Loop",
-    description: "A Turkish-inspired pastry shop in the West Loop that doubles as one of the most beautiful coffee stops in the city. The pastries are architectural — layers of phyllo, pistachio cream, and rose that look too good to eat and taste even better. The coffee program is strong, but you're here for the intersection of sugar and craftsmanship.",
-    signature: "The pistachio croissant and a Turkish coffee. Sit at the marble counter and watch them assemble the pastry case.",
+    description: "The West Loop coffee bar from latte-art world champion Hiroshi Sawada — and yes, the latte art is genuinely the best in Chicago. The drinks are equally serious: military latte (espresso, matcha, cocoa), the Sawada Espresso Tonic, single-origin pour-overs. A small bar tucked into a larger space, but worth seeking out.",
+    signature: "Order the Military Latte and watch them pour it. The matcha–cocoa–espresso combination is way better than it sounds.",
     action: "Get Directions",
     actionType: "directions",
     image: null,

@@ -12,7 +12,7 @@ const CITY_LOCATIONS = LOCATIONS["new-york"] || {};
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const CATEGORIES = ["All", "Eat", "Drink", "Coffee", "Stay", "Experience", "Shop"];
-const NEIGHBORHOODS = ["All Neighborhoods", "West Village", "Lower East Side", "Williamsburg", "SoHo", "Greenpoint", "Fort Greene", "Harlem", "Chelsea", "Nolita", "Bushwick"];
+const NEIGHBORHOODS = ["All Neighborhoods", "West Village", "Lower East Side", "Williamsburg", "SoHo", "Greenpoint", "Fort Greene", "Harlem", "Chelsea", "Nolita", "Bushwick", "East Village"];
 
 const ENTRIES = [
   {
@@ -215,11 +215,11 @@ const ENTRIES = [
   },
   {
     id: 19,
-    name: "Peoples Wine",
+    name: "The Ten Bells",
     category: "Drink",
-    neighborhood: "Williamsburg",
-    description: "A natural wine bar on Wythe Avenue with a list that's deep, nerdy, and surprisingly approachable. The space is small and the vibe is low-key — think neighborhood locals on a first-name basis with the staff. The by-the-glass selection rotates constantly, and the food menu of small snacks is genuinely good, not an afterthought.",
-    signature: "Ask for something skin-contact from a producer you've never heard of. They'll nail it every time.",
+    neighborhood: "Lower East Side",
+    description: "The LES wine bar that helped define what a New York wine bar is supposed to feel like — tin ceiling, candles, oysters at the bar, a chalk-board list that runs deep on natural wines from places you can't pronounce. Loud enough to feel social, dim enough to feel like an affair. The kind of place that's still cool because it stopped trying to be.",
+    signature: "Order the oysters and whatever the bartender is excited about that night. Skip the food menu otherwise — drink and snack.",
     action: "Get Directions",
     actionType: "directions",
     image: null,
@@ -391,11 +391,11 @@ const ENTRIES = [
   },
   {
     id: 35,
-    name: "Marlow & Sons",
+    name: "Win Son",
     category: "Eat",
     neighborhood: "Williamsburg",
-    description: "The restaurant that helped define the farm-to-table Brooklyn movement before that phrase became a parody. Andrew Tarlow's original spot on Broadway still serves a daily-changing menu of simply prepared, sourced-with-obsession dishes. The oysters are impeccable. The roast chicken is the kind of thing that makes you wonder why anyone complicates chicken.",
-    signature: "The roast chicken, whatever preparation they're running tonight. And a dozen oysters to start. Classic for a reason.",
+    description: "Williamsburg's most essential restaurant in the post-Marlow's era. Trigg Brown and Josh Ku's Taiwanese-American menu is sharp, deeply personal, and confident enough to make Brooklyn's umpteenth fusion concept feel obvious. The fly's head — minced pork over chives, fermented black bean, chili — is one of the best dishes in New York. Loud, narrow, perfect.",
+    signature: "Sit at the counter, order the fly's head, the lu rou fan, and the cabbage. Whatever's special. Walk over to the bakery for an old fashioned cake afterward.",
     action: "Reserve",
     actionType: "reserve",
     image: null,
@@ -413,11 +413,11 @@ const ENTRIES = [
   },
   {
     id: 37,
-    name: "Olive's Vintage",
+    name: "Tokio 7",
     category: "Shop",
-    neighborhood: "Williamsburg",
-    description: "A Williamsburg vintage shop with a ruthlessly curated selection of 70s-through-90s clothing that feels more like a stylist's closet than a thrift store. The owner has an eye that separates genuine finds from costume-shop filler. Prices are fair, the turnover is fast, and you'll walk out wearing something that gets compliments within the hour.",
-    signature: "Check the leather jacket rack first — they source exceptional ones. Go midweek when the weekend picks haven't been raided.",
+    neighborhood: "East Village",
+    description: "The East Village consignment shop that taught a generation of New Yorkers how to dress. Helmut Lang archive, Comme des Garçons, Margiela, the occasional Hermès in the window — everything authenticated, fairly priced, and chosen with an editor's eye. The staff knows you're there to dig. They'll let you.",
+    signature: "Go on a Tuesday after the weekend drop-offs are processed. Ask what just came in from the Upper East Side estates.",
     action: "Get Directions",
     actionType: "directions",
     image: null,

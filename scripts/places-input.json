@@ -75,7 +75,7 @@
     "city": "austin",
     "cityName": "Austin, Texas",
     "id": 10,
-    "name": "South Congress Books",
+    "name": "Allen's Boots",
     "category": "Shop",
     "neighborhood": "South Congress"
   },
@@ -363,7 +363,7 @@
     "city": "austin",
     "cityName": "Austin, Texas",
     "id": 46,
-    "name": "Nannie Inez",
+    "name": "Take Heart",
     "category": "Shop",
     "neighborhood": "East Austin"
   },
@@ -371,9 +371,9 @@
     "city": "austin",
     "cityName": "Austin, Texas",
     "id": 47,
-    "name": "Helm Boots",
+    "name": "STAG Provisions for Men",
     "category": "Shop",
-    "neighborhood": "East Austin"
+    "neighborhood": "South Congress"
   },
   {
     "city": "austin",
@@ -547,9 +547,9 @@
     "city": "new-york",
     "cityName": "New York, NY",
     "id": 19,
-    "name": "Peoples Wine",
+    "name": "The Ten Bells",
     "category": "Drink",
-    "neighborhood": "Williamsburg"
+    "neighborhood": "Lower East Side"
   },
   {
     "city": "new-york",
@@ -675,7 +675,7 @@
     "city": "new-york",
     "cityName": "New York, NY",
     "id": 35,
-    "name": "Marlow & Sons",
+    "name": "Win Son",
     "category": "Eat",
     "neighborhood": "Williamsburg"
   },
@@ -691,9 +691,9 @@
     "city": "new-york",
     "cityName": "New York, NY",
     "id": 37,
-    "name": "Olive's Vintage",
+    "name": "Tokio 7",
     "category": "Shop",
-    "neighborhood": "Williamsburg"
+    "neighborhood": "East Village"
   },
   {
     "city": "new-york",
@@ -1259,16 +1259,16 @@
     "city": "chicago",
     "cityName": "Chicago, Illinois",
     "id": 8,
-    "name": "Violet Hour",
+    "name": "Sportsman's Club",
     "category": "Drink",
-    "neighborhood": "Wicker Park"
+    "neighborhood": "Ukrainian Village"
   },
   {
     "city": "chicago",
     "cityName": "Chicago, Illinois",
     "id": 9,
-    "name": "Promontory",
-    "category": "Experience",
+    "name": "Virtue Restaurant",
+    "category": "Eat",
     "neighborhood": "Hyde Park"
   },
   {
@@ -1315,7 +1315,7 @@
     "city": "chicago",
     "cityName": "Chicago, Illinois",
     "id": 15,
-    "name": "Lost Lake",
+    "name": "Scofflaw",
     "category": "Drink",
     "neighborhood": "Logan Square"
   },
@@ -1459,9 +1459,9 @@
     "city": "chicago",
     "cityName": "Chicago, Illinois",
     "id": 33,
-    "name": "Galerie F",
+    "name": "Wolfbait & B-girls",
     "category": "Shop",
-    "neighborhood": "Humboldt Park"
+    "neighborhood": "Logan Square"
   },
   {
     "city": "chicago",
@@ -1499,7 +1499,7 @@
     "city": "chicago",
     "cityName": "Chicago, Illinois",
     "id": 38,
-    "name": "Aya Pastry",
+    "name": "Sawada Coffee",
     "category": "Coffee",
     "neighborhood": "West Loop"
   },
@@ -1795,9 +1795,9 @@
     "city": "los-angeles",
     "cityName": "Los Angeles, California",
     "id": 25,
-    "name": "Shibumi",
+    "name": "Kato",
     "category": "Eat",
-    "neighborhood": "Arts District"
+    "neighborhood": "Downtown"
   },
   {
     "city": "los-angeles",
@@ -1963,7 +1963,7 @@
     "city": "los-angeles",
     "cityName": "Los Angeles, California",
     "id": 46,
-    "name": "Stumptown Coffee Roasters",
+    "name": "Verve Coffee Roasters",
     "category": "Coffee",
     "neighborhood": "Arts District"
   },
@@ -2259,9 +2259,9 @@
     "city": "seattle",
     "cityName": "Seattle, Washington",
     "id": 33,
-    "name": "Manolin",
+    "name": "Joule",
     "category": "Eat",
-    "neighborhood": "Fremont"
+    "neighborhood": "Wallingford"
   },
   {
     "city": "seattle",
@@ -2275,7 +2275,7 @@
     "city": "seattle",
     "cityName": "Seattle, Washington",
     "id": 35,
-    "name": "The Whale Wins",
+    "name": "Bizzarro Italian Cafe",
     "category": "Eat",
     "neighborhood": "Wallingford"
   },
@@ -2307,7 +2307,7 @@
     "city": "seattle",
     "cityName": "Seattle, Washington",
     "id": 39,
-    "name": "Café Besalu",
+    "name": "Honoré Artisan Bakery",
     "category": "Coffee",
     "neighborhood": "Ballard"
   },
@@ -2779,9 +2779,9 @@
     "city": "san-francisco",
     "cityName": "San Francisco, California",
     "id": 48,
-    "name": "Alexander Book Company",
+    "name": "William Stout Architectural Books",
     "category": "Shop",
-    "neighborhood": "SoMa"
+    "neighborhood": "Financial District"
   },
   {
     "city": "san-francisco",
@@ -2883,7 +2883,7 @@
     "city": "miami",
     "cityName": "Miami, Florida",
     "id": 11,
-    "name": "Beaker & Gray",
+    "name": "Mister O1 Extraordinary Pizza",
     "category": "Eat",
     "neighborhood": "Wynwood"
   },
@@ -2915,8 +2915,8 @@
     "city": "miami",
     "cityName": "Miami, Florida",
     "id": 15,
-    "name": "Jaguar Sun",
-    "category": "Eat",
+    "name": "Niu Kitchen",
+    "category": "Drink",
     "neighborhood": "Downtown"
   },
   {
@@ -2947,23 +2947,23 @@
     "city": "miami",
     "cityName": "Miami, Florida",
     "id": 19,
-    "name": "The Anderson",
+    "name": "Vagabond Hotel Bar",
     "category": "Drink",
-    "neighborhood": "Upper East Side"
+    "neighborhood": "MiMo"
   },
   {
     "city": "miami",
     "cityName": "Miami, Florida",
     "id": 20,
-    "name": "Margot Natural Wine",
+    "name": "Lagniappe",
     "category": "Drink",
-    "neighborhood": "Wynwood"
+    "neighborhood": "Edgewater"
   },
   {
     "city": "miami",
     "cityName": "Miami, Florida",
     "id": 21,
-    "name": "Esotico Miami",
+    "name": "Mama Tried",
     "category": "Drink",
     "neighborhood": "Downtown"
   },
@@ -2979,7 +2979,7 @@
     "city": "miami",
     "cityName": "Miami, Florida",
     "id": 23,
-    "name": "Gramps",
+    "name": "Wood Tavern",
     "category": "Drink",
     "neighborhood": "Wynwood"
   },
@@ -3019,7 +3019,7 @@
     "city": "miami",
     "cityName": "Miami, Florida",
     "id": 28,
-    "name": "Bebito's Cafe",
+    "name": "El Cristo Restaurant",
     "category": "Coffee",
     "neighborhood": "Little Havana"
   },
@@ -3043,9 +3043,9 @@
     "city": "miami",
     "cityName": "Miami, Florida",
     "id": 31,
-    "name": "Life House, Little Havana",
+    "name": "Esmé Miami Beach",
     "category": "Stay",
-    "neighborhood": "Little Havana"
+    "neighborhood": "South Beach"
   },
   {
     "city": "miami",
@@ -3267,9 +3267,9 @@
     "city": "portland",
     "cityName": "Portland, Oregon",
     "id": 9,
-    "name": "Pok Pok",
+    "name": "Hat Yai",
     "category": "Eat",
-    "neighborhood": "Division"
+    "neighborhood": "NE Portland"
   },
   {
     "city": "portland",
@@ -3819,9 +3819,9 @@
     "city": "denver",
     "cityName": "Denver, Colorado",
     "id": 28,
-    "name": "Ste. Ellie",
+    "name": "Death & Co Denver",
     "category": "Drink",
-    "neighborhood": "LoDo"
+    "neighborhood": "RiNo"
   },
   {
     "city": "denver",
@@ -3947,7 +3947,7 @@
     "city": "denver",
     "cityName": "Denver, Colorado",
     "id": 44,
-    "name": "Cry Baby Ranch",
+    "name": "Rockmount Ranch Wear",
     "category": "Shop",
     "neighborhood": "LoDo"
   },

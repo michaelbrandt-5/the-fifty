@@ -12,7 +12,7 @@ const CITY_LOCATIONS = LOCATIONS["san-francisco"] || {};
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const CATEGORIES = ["All", "Eat", "Drink", "Coffee", "Stay", "Experience", "Shop"];
-const NEIGHBORHOODS = ["All Neighborhoods", "Mission District", "Hayes Valley", "NoPa", "North Beach", "Chinatown", "Nob Hill", "Pacific Heights", "Inner Sunset", "Dogpatch", "Noe Valley", "SoMa"];
+const NEIGHBORHOODS = ["All Neighborhoods", "Mission District", "Hayes Valley", "NoPa", "North Beach", "Chinatown", "Nob Hill", "Pacific Heights", "Inner Sunset", "Dogpatch", "Noe Valley", "SoMa", "Financial District"];
 
 const ENTRIES = [
   {
@@ -534,11 +534,11 @@ const ENTRIES = [
   },
   {
     id: 48,
-    name: "Alexander Book Company",
+    name: "William Stout Architectural Books",
     category: "Shop",
-    neighborhood: "SoMa",
-    description: "Three floors of independent bookselling on 2nd Street that's survived downtown's every transformation for over 30 years. The selection is deep and sharp — serious literature on one floor, children's and art on another — and the staff actually reads the books they recommend. In a neighborhood overrun by chains and tech offices, it's a reminder of what retail used to feel like.",
-    signature: "The staff picks shelf near the front door is always worth a look. If you have a specific book in mind, they'll find it or order it — the kind of service most bookstores forgot how to do.",
+    neighborhood: "Financial District",
+    description: "A specialty bookstore on Montgomery Street that's been the West Coast's home for architecture and design books since 1974. Stout's selection runs from monographs on Eames and Saarinen to obscure city-planning journals to deep-cut Japanese architecture publications you can't find anywhere else. The staff treats every customer like a serious researcher. Most are.",
+    signature: "Even if you're not in the design world, the building/landscape section is one of the best browses in the city. Ask about the rare-book room.",
     action: "Get Directions",
     actionType: "directions",
     image: null,

@@ -387,9 +387,9 @@
     "city": "austin",
     "cityName": "Austin, Texas",
     "id": 49,
-    "name": "Treaty Oak Distilling",
+    "name": "Desert Door Distillery",
     "category": "Drink",
-    "neighborhood": "West Austin"
+    "neighborhood": "Driftwood"
   },
   {
     "city": "austin",
@@ -2043,7 +2043,7 @@
     "city": "seattle",
     "cityName": "Seattle, Washington",
     "id": 6,
-    "name": "Elm Coffee Roasters",
+    "name": "Espresso Vivace",
     "category": "Coffee",
     "neighborhood": "Capitol Hill"
   },
@@ -3371,9 +3371,9 @@
     "city": "portland",
     "cityName": "Portland, Oregon",
     "id": 22,
-    "name": "Expatriate",
+    "name": "Too Soon",
     "category": "Drink",
-    "neighborhood": "Alberta Arts District"
+    "neighborhood": "NE Portland"
   },
   {
     "city": "portland",
@@ -3883,7 +3883,7 @@
     "city": "denver",
     "cityName": "Denver, Colorado",
     "id": 36,
-    "name": "Middleman",
+    "name": "Whittier Cafe",
     "category": "Coffee",
     "neighborhood": "Five Points"
   },

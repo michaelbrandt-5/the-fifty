@@ -12,7 +12,7 @@ const CITY_LOCATIONS = LOCATIONS.austin || {};
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const CATEGORIES = ["All", "Eat", "Drink", "Coffee", "Stay", "Experience", "Shop"];
-const NEIGHBORHOODS = ["All Neighborhoods", "East Austin", "Downtown", "South Congress", "South Lamar", "West Campus", "Zilker", "Rainey St", "North Loop", "Mueller", "West Austin"];
+const NEIGHBORHOODS = ["All Neighborhoods", "East Austin", "Downtown", "South Congress", "South Lamar", "West Campus", "Zilker", "Rainey St", "North Loop", "Mueller", "West Austin", "Driftwood"];
 
 const ENTRIES = [
   {
@@ -545,11 +545,11 @@ const ENTRIES = [
   },
   {
     id: 49,
-    name: "Treaty Oak Distilling",
+    name: "Desert Door Distillery",
     category: "Drink",
-    neighborhood: "West Austin",
-    description: "A craft distillery in Dripping Springs — just outside town — that's doing some of the best spirits in Texas. The ranch is gorgeous, the tasting room is relaxed, and the ghost hill bourbon has won enough awards to justify the drive. It's less a distillery tour and more a lazy afternoon in the Hill Country with great whiskey.",
-    signature: "The Red Handed bourbon and a seat on the patio overlooking the ranch. Saturday afternoons are ideal.",
+    neighborhood: "Driftwood",
+    description: "A Hill Country distillery making sotol — the desert spirit of west Texas — out of an old World War II hangar in Driftwood. The tasting room sits on a working ranch, the spirits are all distilled on-site from wild-harvested sotol, and the cocktail program is built around showcasing what most people have never tried. Texas-distinctive in a way bourbon can't be.",
+    signature: "Order a flight of three sotols neat to taste the range. Stay for a sotol Old Fashioned and the food truck out front.",
     action: "Get Directions",
     actionType: "directions",
     image: null,

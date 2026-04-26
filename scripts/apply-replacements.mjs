@@ -11,9 +11,16 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
-const replacements = JSON.parse(
-  fs.readFileSync(path.join(ROOT, "scripts", "replacements.json"), "utf8")
-);
+// Accept --file <path> to point at a different batch file (default: scripts/replacements.json)
+const argv = process.argv.slice(2);
+const fileIdx = argv.indexOf("--file");
+const inputFile =
+  fileIdx >= 0 && argv[fileIdx + 1]
+    ? argv[fileIdx + 1]
+    : path.join(ROOT, "scripts", "replacements.json");
+
+const replacements = JSON.parse(fs.readFileSync(inputFile, "utf8"));
+console.log(`Reading replacements from: ${inputFile}\n`);
 
 // Escape a string for use inside a double-quoted JS string literal.
 function escapeJs(s) {

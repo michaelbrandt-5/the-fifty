@@ -97,7 +97,11 @@
       "Bash(node scripts/fetch-photos.mjs)",
       "Bash(node scripts/geocode-entries.mjs)",
       "Bash(node scripts/geocode-entries.mjs --city miami)",
-      "Bash(node /tmp/category-mix.mjs)"
+      "Bash(node /tmp/category-mix.mjs)",
+      "Bash(curl -s --max-time 5 https://thefiftylist.com/portland)",
+      "Bash(curl -s --max-time 5 https://thefiftylist.com/denver)",
+      "Bash(grep -oE 'Death[^\"]{0,15}Denver')",
+      "Bash(node scripts/geocode-entries.mjs --city portland)"
     ]
   }
 }

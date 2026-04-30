@@ -105,7 +105,10 @@
       "Bash(curl -s --max-time 6 https://thefiftylist.com/austin)",
       "Bash(grep -oE 'focus-visible[^}]{0,80}')",
       "Bash(git commit -m 'Remove inaccurate claims from /about page *)",
-      "Bash(git commit -m 'Add research-process paragraph to /about *)"
+      "Bash(git commit -m 'Add research-process paragraph to /about *)",
+      "Bash(curl -sL --max-time 15 \"https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1200&q=80\" -o /Users/michaelbrandt/Documents/Claude/Projects/FIfty/public/images/cities/las-vegas.jpg)",
+      "Bash(node /Users/michaelbrandt/Documents/Claude/Projects/FIfty/scripts/fetch-photos.mjs --city las-vegas)",
+      "Bash(node /Users/michaelbrandt/Documents/Claude/Projects/FIfty/scripts/geocode-entries.mjs --city las-vegas)"
     ]
   }
 }

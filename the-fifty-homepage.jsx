@@ -14,6 +14,7 @@ const CITIES = [
   { name: "Miami", slug: "miami", tagline: "Past the velvet rope", region: "Southeast", img: "/images/cities/miami.jpg" },
   { name: "Portland", slug: "portland", tagline: "Still keeping it weird", region: "Pacific NW", img: "/images/cities/portland.jpg" },
   { name: "Denver", slug: "denver", tagline: "Mile high standards", region: "Mountain West", img: "/images/cities/denver.jpg" },
+  { name: "Las Vegas", slug: "las-vegas", tagline: "Beyond the Strip", region: "Southwest", img: "/images/cities/las-vegas.jpg" },
 ];
 
 const SAMPLE_PICKS = [

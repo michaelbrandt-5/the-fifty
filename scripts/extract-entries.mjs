@@ -17,6 +17,7 @@ const CITIES = [
   { slug: "miami",         file: "miami-city-page.jsx",         name: "Miami, Florida" },
   { slug: "portland",      file: "portland-city-page.jsx",      name: "Portland, Oregon" },
   { slug: "denver",        file: "denver-city-page.jsx",        name: "Denver, Colorado" },
+  { slug: "las-vegas",     file: "las-vegas-city-page.jsx",     name: "Las Vegas, Nevada" },
 ];
 
 // Matches the first four fields of each entry object (always in this order

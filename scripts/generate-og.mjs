@@ -24,6 +24,7 @@ const PAGES = [
   { slug: "miami", title: "Miami", tagline: "Past the velvet rope.", eyebrow: "The 50 best things to do" },
   { slug: "portland", title: "Portland", tagline: "Still keeping it weird.", eyebrow: "The 50 best things to do" },
   { slug: "denver", title: "Denver", tagline: "Mile high standards.", eyebrow: "The 50 best things to do" },
+  { slug: "las-vegas", title: "Las Vegas", tagline: "Beyond the Strip.", eyebrow: "The 50 best things to do" },
 ];
 
 // Brand

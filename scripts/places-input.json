@@ -3998,5 +3998,405 @@
     "name": "Lookout Mountain",
     "category": "Experience",
     "neighborhood": "Highland"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 1,
+    "name": "Lotus of Siam",
+    "category": "Eat",
+    "neighborhood": "Chinatown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 2,
+    "name": "Raku",
+    "category": "Eat",
+    "neighborhood": "Chinatown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 3,
+    "name": "Esther's Kitchen",
+    "category": "Eat",
+    "neighborhood": "Arts District"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 4,
+    "name": "Carbone",
+    "category": "Eat",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 5,
+    "name": "Bazaar Meat by José Andrés",
+    "category": "Eat",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 6,
+    "name": "Wing Lei",
+    "category": "Eat",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 7,
+    "name": "Carson Kitchen",
+    "category": "Eat",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 8,
+    "name": "The Golden Steer Steakhouse",
+    "category": "Eat",
+    "neighborhood": "Off-Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 9,
+    "name": "Yui Edomae Sushi",
+    "category": "Eat",
+    "neighborhood": "Chinatown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 10,
+    "name": "Tacos El Gordo",
+    "category": "Eat",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 11,
+    "name": "Pho Kim Long",
+    "category": "Eat",
+    "neighborhood": "Chinatown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 12,
+    "name": "Sparrow + Wolf",
+    "category": "Eat",
+    "neighborhood": "Chinatown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 13,
+    "name": "Echo & Rig",
+    "category": "Eat",
+    "neighborhood": "Henderson"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 14,
+    "name": "Bouchon",
+    "category": "Eat",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 15,
+    "name": "Sage",
+    "category": "Eat",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 16,
+    "name": "Frankie's Tiki Room",
+    "category": "Drink",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 17,
+    "name": "Atomic Liquors",
+    "category": "Drink",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 18,
+    "name": "Velveteen Rabbit",
+    "category": "Drink",
+    "neighborhood": "Arts District"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 19,
+    "name": "Herbs & Rye",
+    "category": "Drink",
+    "neighborhood": "Westside"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 20,
+    "name": "Park on Fremont",
+    "category": "Drink",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 21,
+    "name": "Oddfellows",
+    "category": "Drink",
+    "neighborhood": "Arts District"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 22,
+    "name": "The Sand Dollar Lounge",
+    "category": "Drink",
+    "neighborhood": "Westside"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 23,
+    "name": "Double Down Saloon",
+    "category": "Drink",
+    "neighborhood": "UNLV"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 24,
+    "name": "Vesta Coffee Roasters",
+    "category": "Coffee",
+    "neighborhood": "Arts District"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 25,
+    "name": "Mothership Coffee Roasters",
+    "category": "Coffee",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 26,
+    "name": "PublicUs",
+    "category": "Coffee",
+    "neighborhood": "UNLV"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 27,
+    "name": "Makers & Finders",
+    "category": "Coffee",
+    "neighborhood": "Arts District"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 28,
+    "name": "Bad Owl Coffee",
+    "category": "Coffee",
+    "neighborhood": "Summerlin"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 29,
+    "name": "Wynn Las Vegas",
+    "category": "Stay",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 30,
+    "name": "The Cosmopolitan of Las Vegas",
+    "category": "Stay",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 31,
+    "name": "El Cortez Hotel & Casino",
+    "category": "Stay",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 32,
+    "name": "Red Rock Casino Resort & Spa",
+    "category": "Stay",
+    "neighborhood": "Summerlin"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 33,
+    "name": "Red Rock Canyon National Conservation Area",
+    "category": "Experience",
+    "neighborhood": "Summerlin"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 34,
+    "name": "Hoover Dam",
+    "category": "Experience",
+    "neighborhood": "Boulder City"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 35,
+    "name": "Valley of Fire State Park",
+    "category": "Experience",
+    "neighborhood": "Boulder City"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 36,
+    "name": "The Neon Museum",
+    "category": "Experience",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 37,
+    "name": "The Mob Museum",
+    "category": "Experience",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 38,
+    "name": "Atomic Museum",
+    "category": "Experience",
+    "neighborhood": "UNLV"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 39,
+    "name": "Sphere",
+    "category": "Experience",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 40,
+    "name": "Bellagio Conservatory & Botanical Gardens",
+    "category": "Experience",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 41,
+    "name": "Mount Charleston Lodge",
+    "category": "Experience",
+    "neighborhood": "Spring Mountains"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 42,
+    "name": "Springs Preserve",
+    "category": "Experience",
+    "neighborhood": "Westside"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 43,
+    "name": "The Arts Factory",
+    "category": "Experience",
+    "neighborhood": "Arts District"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 44,
+    "name": "The Smith Center for the Performing Arts",
+    "category": "Experience",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 45,
+    "name": "The Writer's Block",
+    "category": "Shop",
+    "neighborhood": "Downtown"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 46,
+    "name": "Zia Records",
+    "category": "Shop",
+    "neighborhood": "UNLV"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 47,
+    "name": "Retro Vegas",
+    "category": "Shop",
+    "neighborhood": "Arts District"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 48,
+    "name": "Bauman Rare Books",
+    "category": "Shop",
+    "neighborhood": "The Strip"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 49,
+    "name": "Glam Factory Vintage",
+    "category": "Shop",
+    "neighborhood": "Arts District"
+  },
+  {
+    "city": "las-vegas",
+    "cityName": "Las Vegas, Nevada",
+    "id": 50,
+    "name": "Patina Décor",
+    "category": "Shop",
+    "neighborhood": "Arts District"
   }
 ]

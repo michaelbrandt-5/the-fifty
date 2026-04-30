@@ -58,6 +58,7 @@ const ROUTES = [
   "/miami",
   "/portland",
   "/denver",
+  "/las-vegas",
 ];
 
 // Static server — serves files from dist/. For any HTML route (/, /austin, etc.)

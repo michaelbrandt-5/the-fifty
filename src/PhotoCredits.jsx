@@ -16,6 +16,7 @@ const CITY_DISPLAY_NAMES = {
   miami: "Miami",
   portland: "Portland",
   denver: "Denver",
+  "las-vegas": "Las Vegas",
 };
 
 const CITY_ORDER = [
@@ -29,6 +30,7 @@ const CITY_ORDER = [
   "miami",
   "portland",
   "denver",
+  "las-vegas",
 ];
 
 function Nav() {

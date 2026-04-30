@@ -31,6 +31,7 @@ import SanFrancisco from "../san-francisco-city-page.jsx";
 import Miami from "../miami-city-page.jsx";
 import Portland from "../portland-city-page.jsx";
 import Denver from "../denver-city-page.jsx";
+import LasVegas from "../las-vegas-city-page.jsx";
 import Methodology from "../methodology-page.jsx";
 import PhotoCredits from "./PhotoCredits.jsx";
 import About from "./About.jsx";
@@ -87,6 +88,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/miami" element={<Miami />} />
             <Route path="/portland" element={<Portland />} />
             <Route path="/denver" element={<Denver />} />
+            <Route path="/las-vegas" element={<LasVegas />} />
             <Route path="/methodology" element={<Methodology />} />
             <Route path="/photo-credits" element={<PhotoCredits />} />
             <Route path="/about" element={<About />} />

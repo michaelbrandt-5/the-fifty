@@ -137,6 +137,13 @@ export const CITIES = {
       "Mile-high standards: 50 Denver picks from RiNo breweries to Cap Hill dive bars to Front Range trailheads. The list locals send to their friends.",
     ogImage: "/og/denver.png",
   },
+  "las-vegas": {
+    cityName: "Las Vegas",
+    title: "The 50 Best Things to Do in Las Vegas — The Fifty",
+    description:
+      "Beyond the Strip: 50 Las Vegas picks from Chinatown omakase counters to Arts District wine bars, Hoover Dam tours to the oldest steakhouse in town.",
+    ogImage: "/og/las-vegas.png",
+  },
 };
 
 // Map a category to the most specific Schema.org LocalBusiness subtype.

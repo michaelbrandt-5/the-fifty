@@ -137,16 +137,6 @@ function Hero() {
       justifyContent: "center", alignItems: "center", textAlign: "center",
       padding: "120px 24px 80px", position: "relative",
     }}>
-      <div style={{
-        position: "absolute", top: "15%", left: "8%", width: 180, height: 240,
-        background: `url(/images/cities/hero-1.jpg) center/cover`,
-        opacity: 0.12, filter: "grayscale(30%)",
-      }} />
-      <div style={{
-        position: "absolute", bottom: "18%", right: "10%", width: 150, height: 200,
-        background: `url(/images/cities/hero-2.jpg) center/cover`,
-        opacity: 0.1, filter: "grayscale(30%)",
-      }} />
       <p style={{
         fontFamily: "'Inter', system-ui, sans-serif", fontSize: 12,
         letterSpacing: "0.2em", textTransform: "uppercase", color: "#8C6534",

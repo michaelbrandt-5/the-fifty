@@ -11,6 +11,13 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <!-- Performance: pre-warm connections to cross-origin services we always use -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://thefiftylist.us8.list-manage.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://basemaps.cartocdn.com" />
+
     <style>
       /* Keyboard accessibility: visible focus indicator for keyboard users only.
          Uses :focus-visible so mouse-clicks don't show outlines unnecessarily. */

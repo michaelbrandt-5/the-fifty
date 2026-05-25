@@ -4,17 +4,17 @@ import { subscribeEmail } from "./src/mailchimp.js";
 import PageMeta from "./src/PageMeta.jsx";
 
 const CITIES = [
-  { name: "New York", slug: "new-york", tagline: "The definitive 50", region: "Northeast", img: "/images/cities/new-york.jpg" },
-  { name: "Austin", slug: "austin", tagline: "Beyond the hype", region: "Texas", img: "/images/cities/austin.jpg" },
-  { name: "Nashville", slug: "nashville", tagline: "Past the neon", region: "Southeast", img: "/images/cities/nashville.jpg" },
-  { name: "Chicago", slug: "chicago", tagline: "The real list", region: "Midwest", img: "/images/cities/chicago.jpg" },
-  { name: "Los Angeles", slug: "los-angeles", tagline: "Worth the drive", region: "West Coast", img: "/images/cities/los-angeles.jpg" },
-  { name: "Seattle", slug: "seattle", tagline: "Rain or shine", region: "Pacific NW", img: "/images/cities/seattle.jpg" },
-  { name: "San Francisco", slug: "san-francisco", tagline: "Seven miles square", region: "West Coast", img: "/images/cities/san-francisco.jpg" },
-  { name: "Miami", slug: "miami", tagline: "Past the velvet rope", region: "Southeast", img: "/images/cities/miami.jpg" },
-  { name: "Portland", slug: "portland", tagline: "Still keeping it weird", region: "Pacific NW", img: "/images/cities/portland.jpg" },
-  { name: "Denver", slug: "denver", tagline: "Mile high standards", region: "Mountain West", img: "/images/cities/denver.jpg" },
-  { name: "Las Vegas", slug: "las-vegas", tagline: "Beyond the Strip", region: "Southwest", img: "/images/cities/las-vegas.jpg" },
+  { name: "New York", slug: "new-york", tagline: "The definitive 50", region: "Northeast", img: "/images/cities/new-york.webp" },
+  { name: "Austin", slug: "austin", tagline: "Beyond the hype", region: "Texas", img: "/images/cities/austin.webp" },
+  { name: "Nashville", slug: "nashville", tagline: "Past the neon", region: "Southeast", img: "/images/cities/nashville.webp" },
+  { name: "Chicago", slug: "chicago", tagline: "The real list", region: "Midwest", img: "/images/cities/chicago.webp" },
+  { name: "Los Angeles", slug: "los-angeles", tagline: "Worth the drive", region: "West Coast", img: "/images/cities/los-angeles.webp" },
+  { name: "Seattle", slug: "seattle", tagline: "Rain or shine", region: "Pacific NW", img: "/images/cities/seattle.webp" },
+  { name: "San Francisco", slug: "san-francisco", tagline: "Seven miles square", region: "West Coast", img: "/images/cities/san-francisco.webp" },
+  { name: "Miami", slug: "miami", tagline: "Past the velvet rope", region: "Southeast", img: "/images/cities/miami.webp" },
+  { name: "Portland", slug: "portland", tagline: "Still keeping it weird", region: "Pacific NW", img: "/images/cities/portland.webp" },
+  { name: "Denver", slug: "denver", tagline: "Mile high standards", region: "Mountain West", img: "/images/cities/denver.webp" },
+  { name: "Las Vegas", slug: "las-vegas", tagline: "Beyond the Strip", region: "Southwest", img: "/images/cities/las-vegas.webp" },
 ];
 
 const SAMPLE_PICKS = [

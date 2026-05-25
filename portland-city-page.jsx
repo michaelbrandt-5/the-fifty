@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import PHOTOS from "./src/photos.json";
 import { subscribeEmail } from "./src/mailchimp.js";
-import CityMap from "./src/CityMap.jsx";
+const CityMap = lazy(() => import("./src/CityMap.jsx"));
 import LOCATIONS from "./src/locations.json";
 import PageMeta from "./src/PageMeta.jsx";
 
@@ -842,9 +842,9 @@ const ListEntry = ({ entry, index }) => {
       {/* Content */}
       <div className="fifty-list-content" style={{ paddingRight: 32 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8, flexWrap: "wrap" }}>
-          <h3 style={{ fontFamily: "'Georgia', serif", fontSize: 22, fontWeight: 400, color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
+          <h2 style={{ fontFamily: "'Georgia', serif", fontSize: 22, fontWeight: 400, color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
             {entry.name}
-          </h3>
+          </h2>
           <span style={{
             padding: "3px 10px",
             borderRadius: 100,
@@ -971,9 +971,9 @@ const GridEntry = ({ entry, index }) => {
           </span>
         </div>
 
-        <h3 style={{ fontFamily: "'Georgia', serif", fontSize: 19, fontWeight: 400, color: "#1a1a1a", margin: "0 0 10px", lineHeight: 1.25 }}>
+        <h2 style={{ fontFamily: "'Georgia', serif", fontSize: 19, fontWeight: 400, color: "#1a1a1a", margin: "0 0 10px", lineHeight: 1.25 }}>
           {entry.name}
-        </h3>
+        </h2>
 
         <p style={{
           fontFamily: "'Georgia', serif", fontSize: 13.5, lineHeight: 1.65, color: "#555",
@@ -1050,9 +1050,9 @@ const Footer = () => {
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.02)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)"; }}
             >
-              <h4 style={{ fontFamily: "'Georgia', serif", fontSize: 20, fontWeight: 400, color: "#f5f0e8", margin: "0 0 6px" }}>
+              <h3 style={{ fontFamily: "'Georgia', serif", fontSize: 20, fontWeight: 400, color: "#f5f0e8", margin: "0 0 6px" }}>
                 {city.name}
-              </h4>
+              </h3>
               <p style={{ fontFamily: "'Georgia', serif", fontSize: 13, color: "rgba(255,255,255,0.4)", margin: 0, fontStyle: "italic" }}>
                 {city.tagline}
               </p>
@@ -1116,9 +1116,9 @@ function NewsletterCapture() {
   return (
     <div id="newsletter" style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
       <div style={{ maxWidth: 480, margin: "0 auto", textAlign: "center" }}>
-        <h3 style={{ fontFamily: "'Georgia', serif", fontSize: 24, fontWeight: 400, color: "#f5f0e8", margin: "0 0 8px" }}>
+        <h2 style={{ fontFamily: "'Georgia', serif", fontSize: 24, fontWeight: 400, color: "#f5f0e8", margin: "0 0 8px" }}>
           New cities are coming
-        </h3>
+        </h2>
         <p style={{ fontFamily: "'Georgia', serif", fontSize: 14, color: "rgba(255,255,255,0.4)", margin: "0 0 28px" }}>
           We'll let you know when we publish the next one. Nothing else.
         </p>
@@ -1250,7 +1250,13 @@ export default function PortlandCityPage() {
         )}
       </main>
 
-      <CityMap entries={ENTRIES} locations={CITY_LOCATIONS} cityName="Portland" />
+      <Suspense fallback={<div style={{ height: 400, background: "#e5e7eb", borderRadius: 12 }} />}>
+
+
+        <CityMap entries={ENTRIES} locations={CITY_LOCATIONS} cityName="Portland" />
+
+
+      </Suspense>
       <Footer />
     </div>
     </>

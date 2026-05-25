@@ -127,7 +127,7 @@ export default function CityMap({ entries, locations, cityName }) {
         >
           The Map
         </p>
-        <h3
+        <h2
           style={{
             fontFamily: "'Georgia', serif",
             fontSize: 28,
@@ -137,7 +137,7 @@ export default function CityMap({ entries, locations, cityName }) {
           }}
         >
           All 50 picks, pinned
-        </h3>
+        </h2>
         <p
           style={{
             fontFamily: "'Georgia', serif",

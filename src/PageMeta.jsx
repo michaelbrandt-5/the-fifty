@@ -102,11 +102,13 @@ function buildEntryJsonLdGraph(citySlug, cityName, entries) {
 
 /**
  * Props:
- *   page: "home" | "methodology" | "photo-credits" | "about" | "privacy" | "terms" | "city"
+ *   page: "home" | "methodology" | "photo-credits" | "about" | "privacy" | "terms" | "city" | "entry"
  *   citySlug: string (required when page === "city")
  *   entries: array (required when page === "city")
+ *   entryData: object (required when page === "entry") — { title, description, canonical,
+ *              ogImage, citySlug, cityName, entry }
  */
-export default function PageMeta({ page, citySlug, entries }) {
+export default function PageMeta({ page, citySlug, entries, entryData }) {
   let title;
   let description;
   let canonical;
@@ -117,7 +119,41 @@ export default function PageMeta({ page, citySlug, entries }) {
   // Breadcrumbs: always start with Home.
   const crumbs = [{ name: "Home", url: SITE.baseUrl }];
 
-  if (page === "city") {
+  if (page === "entry") {
+    if (!entryData) return null;
+    title = entryData.title;
+    description = entryData.description;
+    canonical = `${SITE.baseUrl}${entryData.canonical}`;
+    ogImage = entryData.ogImage || absUrl(SITE.defaultOgImage);
+    ogType = "article";
+
+    // Breadcrumb: Home → City → Entry
+    const cityUrl = `${SITE.baseUrl}/${entryData.citySlug}`;
+    crumbs.push({ name: entryData.cityName, url: cityUrl });
+    crumbs.push({ name: entryData.entry.name, url: canonical });
+    jsonLdBlocks.push(buildBreadcrumbJsonLd(crumbs));
+
+    // LocalBusiness JSON-LD for the single entry
+    const schemaType = categoryToSchemaType(entryData.entry.category);
+    const loc = (LOCATIONS[entryData.citySlug] || {})[entryData.entry.id];
+    const placeNode = {
+      "@context": "https://schema.org",
+      "@type": schemaType,
+      name: entryData.entry.name,
+      description: entryData.entry.description,
+      url: canonical,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: entryData.cityName,
+        addressRegion: entryData.entry.neighborhood,
+      },
+    };
+    if (loc) {
+      placeNode.geo = { "@type": "GeoCoordinates", latitude: loc.lat, longitude: loc.lng };
+    }
+    if (ogImage) placeNode.image = ogImage;
+    jsonLdBlocks.push(placeNode);
+  } else if (page === "city") {
     const city = CITIES[citySlug];
     if (!city) return null;
     title = city.title;

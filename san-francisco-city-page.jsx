@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import PHOTOS from "./src/photos.json";
+import { toEntrySlug } from "./src/utils/slug.js";
 import { subscribeEmail } from "./src/mailchimp.js";
 const CityMap = lazy(() => import("./src/CityMap.jsx"));
 import LOCATIONS from "./src/locations.json";
@@ -14,7 +15,9 @@ const CITY_LOCATIONS = LOCATIONS["san-francisco"] || {};
 const CATEGORIES = ["All", "Eat", "Drink", "Coffee", "Stay", "Experience", "Shop"];
 const NEIGHBORHOODS = ["All Neighborhoods", "Mission District", "Hayes Valley", "NoPa", "North Beach", "Chinatown", "Nob Hill", "Pacific Heights", "Inner Sunset", "Dogpatch", "Noe Valley", "SoMa", "Financial District"];
 
-const ENTRIES = [
+const CITY_SLUG = "san-francisco";
+
+export const ENTRIES = [
   {
     id: 1,
     name: "Tartine Bakery",
@@ -843,7 +846,9 @@ const ListEntry = ({ entry, index }) => {
       <div className="fifty-list-content" style={{ paddingRight: 32 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8, flexWrap: "wrap" }}>
           <h2 style={{ fontFamily: "'Georgia', serif", fontSize: 22, fontWeight: 400, color: "#1a1a1a", margin: 0, lineHeight: 1.2 }}>
-            {entry.name}
+            <a href={`/${CITY_SLUG}/${toEntrySlug(entry.name)}`} style={{ color: "inherit", textDecoration: "none" }}>
+              {entry.name}
+            </a>
           </h2>
           <span style={{
             padding: "3px 10px",
@@ -972,7 +977,9 @@ const GridEntry = ({ entry, index }) => {
         </div>
 
         <h2 style={{ fontFamily: "'Georgia', serif", fontSize: 19, fontWeight: 400, color: "#1a1a1a", margin: "0 0 10px", lineHeight: 1.25 }}>
-          {entry.name}
+          <a href={`/${CITY_SLUG}/${toEntrySlug(entry.name)}`} style={{ color: "inherit", textDecoration: "none" }}>
+            {entry.name}
+          </a>
         </h2>
 
         <p style={{

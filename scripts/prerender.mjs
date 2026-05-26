@@ -9,6 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
 import { fileURLToPath } from "node:url";
+import { getEntryRoutes } from "./get-entry-routes.mjs";
 
 // Vercel sets VERCEL=1 in the build environment.
 const IS_VERCEL = !!process.env.VERCEL;
@@ -41,7 +42,7 @@ const DIST = path.join(ROOT, "dist");
 const PORT = 4173;
 const ORIGIN = `http://localhost:${PORT}`;
 
-const ROUTES = [
+const STATIC_ROUTES = [
   "/",
   "/methodology",
   "/photo-credits",
@@ -60,6 +61,11 @@ const ROUTES = [
   "/denver",
   "/las-vegas",
 ];
+
+// All 550 entry deep-URL routes
+const ENTRY_ROUTES = getEntryRoutes();
+
+const ROUTES = [...STATIC_ROUTES, ...ENTRY_ROUTES];
 
 // Static server — serves files from dist/. For any HTML route (/, /austin, etc.)
 // it returns the ORIGINAL pre-prerender SPA shell, never any HTML we may have
@@ -203,7 +209,8 @@ async function main() {
 
   let succeeded = 0;
   let failed = 0;
-  for (const route of ROUTES) {
+
+  async function processRoute(route) {
     try {
       const html = await snapshotRoute(browser, route);
       const outDir =
@@ -212,13 +219,32 @@ async function main() {
       const outPath = path.join(outDir, "index.html");
       fs.writeFileSync(outPath, html);
       const sizeKb = (Buffer.byteLength(html) / 1024).toFixed(1);
-      console.log(`  ✓ ${route.padEnd(20)} → ${path.relative(ROOT, outPath)}  (${sizeKb} KB)`);
+      // Verbose logging only for static routes; entry routes use compact dots
+      if (STATIC_ROUTES.includes(route)) {
+        console.log(`  ✓ ${route.padEnd(22)} → ${path.relative(ROOT, outPath)}  (${sizeKb} KB)`);
+      } else {
+        process.stdout.write(".");
+      }
       succeeded++;
     } catch (err) {
       console.error(`  ✗ ${route}: ${err.message}`);
       failed++;
     }
   }
+
+  // Static routes: sequential (fast, few, easy to debug)
+  for (const route of STATIC_ROUTES) {
+    await processRoute(route);
+  }
+
+  // Entry routes: parallel batches of 5 for speed
+  const CONCURRENCY = 5;
+  console.log(`\nRendering ${ENTRY_ROUTES.length} entry pages (${CONCURRENCY} concurrent)…`);
+  for (let i = 0; i < ENTRY_ROUTES.length; i += CONCURRENCY) {
+    const batch = ENTRY_ROUTES.slice(i, i + CONCURRENCY);
+    await Promise.all(batch.map(processRoute));
+  }
+  console.log(); // newline after dots
 
   await browser.close();
   server.close();

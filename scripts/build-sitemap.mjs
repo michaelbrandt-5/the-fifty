@@ -3,11 +3,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { getEntryRoutes } from "./get-entry-routes.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const today = new Date().toISOString().split("T")[0];
 
-const ROUTES = [
+const STATIC_ROUTES = [
   { path: "/", priority: 1.0, changefreq: "weekly" },
   { path: "/austin", priority: 0.9, changefreq: "monthly" },
   { path: "/new-york", priority: 0.9, changefreq: "monthly" },
@@ -27,11 +28,20 @@ const ROUTES = [
   { path: "/terms", priority: 0.3, changefreq: "yearly" },
 ];
 
+// Add all 550 entry deep-URL routes
+const entryRoutes = getEntryRoutes().map((p) => ({
+  path: p,
+  priority: 0.8,
+  changefreq: "monthly",
+}));
+
+const ROUTES = [...STATIC_ROUTES, ...entryRoutes];
+
 const BASE = "https://thefiftylist.com";
 
 const urls = ROUTES.map(
   (r) =>
-    `  <url>\n    <loc>${BASE}${r.path === "/" ? "/" : r.path}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority.toFixed(1)}</priority>\n  </url>`
+    `  <url>\n    <loc>${BASE}${r.path}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority.toFixed(1)}</priority>\n  </url>`
 ).join("\n");
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
@@ -43,4 +53,4 @@ if (fs.existsSync(path.dirname(distSitemap))) {
   fs.writeFileSync(distSitemap, xml);
 }
 
-console.log(`✅ sitemap.xml regenerated with lastmod=${today} (${ROUTES.length} URLs)`);
+console.log(`✅ sitemap.xml regenerated with lastmod=${today} (${STATIC_ROUTES.length} static + ${entryRoutes.length} entry URLs = ${ROUTES.length} total)`);

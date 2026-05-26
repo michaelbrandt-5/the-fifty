@@ -37,6 +37,7 @@ import PhotoCredits from "./PhotoCredits.jsx";
 import About from "./About.jsx";
 import Privacy from "./Privacy.jsx";
 import Terms from "./Terms.jsx";
+import EntryPage from "./EntryPage.jsx";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -92,6 +93,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          {/* Per-entry deep URLs — must come last to not shadow city routes */}
+          <Route path="/:citySlug/:entrySlug" element={<EntryPage />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

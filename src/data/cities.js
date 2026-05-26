@@ -53,3 +53,31 @@ export function getRelatedEntries(citySlug, currentId, count = 3) {
     .filter((e) => e.id !== currentId)
     .slice(0, count);
 }
+
+/**
+ * Returns up to `count` { entry, citySlug, cityData } objects from OTHER cities
+ * in the same category.  Uses entryId as a deterministic offset so different
+ * entries surface different cities (good for internal link diversity).
+ */
+export function getCrossCityEntries(currentCitySlug, category, entryId, count = 2) {
+  const otherCities = Object.entries(CITY_DATA).filter(
+    ([slug]) => slug !== currentCitySlug
+  );
+  // Rotate the city list so each entry shows a different pair of cities
+  const offset = (entryId - 1) % otherCities.length;
+  const rotated = [
+    ...otherCities.slice(offset),
+    ...otherCities.slice(0, offset),
+  ];
+
+  const results = [];
+  for (const [citySlug, cityData] of rotated) {
+    const matching = cityData.entries.filter((e) => e.category === category);
+    if (matching.length === 0) continue;
+    // Pick a specific matching entry using entryId for variety across pages
+    const pick = matching[entryId % matching.length];
+    results.push({ entry: pick, citySlug, cityData });
+    if (results.length >= count) break;
+  }
+  return results;
+}

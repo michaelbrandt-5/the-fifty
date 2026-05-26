@@ -4,7 +4,7 @@
 
 import { useParams, Link } from "react-router-dom";
 import { CITIES, SITE, categoryToSchemaType } from "./seo.js";
-import { lookupEntry, getRelatedEntries } from "./data/cities.js";
+import { lookupEntry, getRelatedEntries, getCrossCityEntries } from "./data/cities.js";
 import { toEntrySlug } from "./utils/slug.js";
 import PHOTOS from "./photos.json";
 import PageMeta from "./PageMeta.jsx";
@@ -161,6 +161,7 @@ export default function EntryPage() {
   const cat = CAT_COLORS[entry.category] || { bg: "#888", text: "#fff" };
   const actionUrl = getActionUrl(entry, cityData.name, cityData.state);
   const related = getRelatedEntries(citySlug, entry.id, 3);
+  const crossCity = getCrossCityEntries(citySlug, entry.category, entry.id, 2);
 
   const pageTitle = `${entry.name} — ${cityData.name} — The Fifty`;
   const pageDesc = entry.description.slice(0, 155).trimEnd() + (entry.description.length > 155 ? "…" : "");
@@ -460,6 +461,84 @@ export default function EntryPage() {
           </section>
         )}
       </main>
+
+      {/* ── Cross-city links ─────────────────────────────────────────────── */}
+        {crossCity.length > 0 && (
+          <section style={{
+            background: "#F7F4EE",
+            borderTop: "1px solid rgba(0,0,0,0.07)",
+            padding: "48px 40px 56px",
+          }}>
+            <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+              <p style={{
+                fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
+                letterSpacing: 2, textTransform: "uppercase", color: "#B8864E",
+                marginBottom: 8,
+              }}>
+                {entry.category} picks elsewhere
+              </p>
+              <h2 style={{
+                fontFamily: "'Georgia', serif", fontSize: 22, fontWeight: 400,
+                color: "#1a1a1a", margin: "0 0 28px",
+              }}>
+                More {entry.category.toLowerCase()} we love
+              </h2>
+              <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+                {crossCity.map(({ entry: e, citySlug: cs, cityData: cd }) => {
+                  const eCat = CAT_COLORS[e.category] || { bg: "#888", text: "#fff" };
+                  return (
+                    <a
+                      key={`${cs}-${e.id}`}
+                      href={`/${cs}/${toEntrySlug(e.name)}`}
+                      style={{
+                        display: "flex", alignItems: "center", gap: 20,
+                        padding: "20px 0",
+                        borderBottom: "1px solid rgba(0,0,0,0.07)",
+                        textDecoration: "none",
+                        transition: "opacity 0.15s",
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.75"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                    >
+                      <div style={{ flex: 1 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                          <span style={{
+                            padding: "2px 9px", borderRadius: 100,
+                            backgroundColor: eCat.bg, color: eCat.text,
+                            fontSize: 10, fontWeight: 600, letterSpacing: 0.8,
+                            textTransform: "uppercase", fontFamily: "system-ui, sans-serif",
+                          }}>
+                            {e.category}
+                          </span>
+                          <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, color: "#999" }}>
+                            {e.neighborhood} · {cd.name}, {cd.state}
+                          </span>
+                        </div>
+                        <p style={{
+                          fontFamily: "'Georgia', serif", fontSize: 18,
+                          fontWeight: 400, color: "#1a1a1a", margin: "0 0 4px",
+                        }}>
+                          {e.name}
+                        </p>
+                        <p style={{
+                          fontFamily: "'Georgia', serif", fontSize: 13.5,
+                          color: "#777", margin: 0, lineHeight: 1.5,
+                          display: "-webkit-box", WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical", overflow: "hidden",
+                        }}>
+                          {e.description}
+                        </p>
+                      </div>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#B8864E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                        <path d="M3 8h10M9 3l5 5-5 5" />
+                      </svg>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
       <footer style={{ background: "#1a1a1a", padding: "48px 40px" }}>

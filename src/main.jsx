@@ -38,6 +38,7 @@ import About from "./About.jsx";
 import Privacy from "./Privacy.jsx";
 import Terms from "./Terms.jsx";
 import EntryPage from "./EntryPage.jsx";
+import NotFound from "./NotFound.jsx";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -93,8 +94,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
-          {/* Per-entry deep URLs — must come last to not shadow city routes */}
+          {/* Per-entry deep URLs — must come before the 404 catch-all */}
           <Route path="/:citySlug/:entrySlug" element={<EntryPage />} />
+          {/* 404 catch-all — must be last */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

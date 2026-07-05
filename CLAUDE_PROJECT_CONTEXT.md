@@ -315,7 +315,7 @@ Everything below is NOT obvious from reading the source, reconstructed from hist
 - The old machine's Node was a **manual tarball install at `~/local/nodejs/node-v22.15.0-darwin-arm64/`** (no Homebrew/nvm at the time), later joined by a system Node 24 at `/usr/local/bin/node`. `.claude/launch.json` still points at the tarball path — **update it on the new machine.**
 - `.env` (`GOOGLE_PLACES_API_KEY`) is gitignored — copy it manually or mint a new key (Google Cloud console; the key needs Places API (New) enabled).
 - Vercel deploys via Git integration configured in the Vercel dashboard — nothing in the repo controls it. Verify dashboard access from the new machine.
-- **The project folder is inside an iCloud-synced path, and it shows.** The " 2" duplicate files in `dist/` (`index 2.html`, `sitemap 2.xml`) are iCloud conflict artifacts, and the `tmp_obj_*` garbage in `.git` is plausibly the same. Treat iCloud as a courier, not a VCS: never work on the repo from two machines concurrently, sync code through GitHub (`git push`/`pull`), verify with `git fsck` after any period where both machines were awake, and delete `dist/` before builds rather than trusting the synced copy.
+- **iCloud and git do not mix — this is proven, not theoretical.** The project originally lived in an iCloud-synced path (`~/Documents/Claude/Projects/FIfty`). Symptoms accumulated there: " 2" duplicate files in `dist/`, `tmp_obj_*` garbage in `.git`, 1,633 loose objects — and during the 2026-07-05 machine migration, the iCloud-synced `.git` arrived on the new machine outright corrupted (fsck: broken links, missing trees/blobs). The working copy is now a fresh GitHub clone **outside** iCloud; sync between machines happens via `git push`/`pull` only. If you ever find this repo inside an iCloud/Dropbox/OneDrive-synced path again, move it out.
 - Mailchimp: audience "thefiftylist" on server `us8`; the JSONP params in `src/mailchimp.js` are the public embed-form values, not secrets.
 - Google Places API cost: ~$0.017/call; a full 550-entry status audit ≈ $9.35, a full photo re-fetch costs real money — hence the `--city`/`--limit` discipline.
 
@@ -392,14 +392,14 @@ Carried forward from LAUNCH_PLAN.md (never answered) plus new ones:
 
 If a fresh session takes over tomorrow, in order:
 
-1. **Restore the environment** (30 min). The project folder lives under an iCloud-synced path, so it arrives on the new machine via iCloud — do **not** clone into it. In order:
-   - Wait for iCloud to finish, then force-download the whole folder (Finder → right-click → "Download Now"). A partially-synced or evicted `.git` is corruption waiting to happen.
-   - Verify the repo before trusting it: `git fsck` and `git log --oneline -3` (HEAD should be `9dc718a` or later). If fsck complains or you find new iCloud conflict files (`* 2.*`), set the synced folder aside, `git clone https://github.com/michaelbrandt-5/the-fifty.git` to a fresh location, and copy `.env` over from the synced copy — **GitHub is the source of truth, iCloud is just the courier.**
-   - Confirm `.env` arrived with the folder (it syncs; it contains `GOOGLE_PLACES_API_KEY`). If missing, mint a new key with Places API (New) enabled.
-   - `rm -rf node_modules dist && npm install` — never trust iCloud-synced native binaries (sharp, resvg, and puppeteer's Chromium are machine-specific, and iCloud can evict file contents).
-   - Fix the hardcoded Node path in `.claude/launch.json`; install Playfair Display + Inter system fonts if asset regeneration is anticipated; confirm Vercel dashboard access and that pushes still deploy.
+1. **Restore the environment** (30 min). **Update 2026-07-05:** this played out during the migration — the iCloud-synced copy of the repo arrived on the new machine with a corrupted `.git` (`git fsck`: broken links, missing trees/blobs). The recovery, and the standing instruction for any future machine:
+   - **Clone fresh from GitHub to a path OUTSIDE iCloud sync** (e.g. `~/Claude/Projects/FIfty` — home directory, not `~/Documents`): `git clone https://github.com/michaelbrandt-5/the-fifty.git`. GitHub is the source of truth; never trust an iCloud-synced `.git`.
+   - Copy `.env` (contains `GOOGLE_PLACES_API_KEY`) from the old iCloud folder (`~/Documents/Claude/Projects/FIfty/.env`) into the clone. If it's missing, mint a new key with Places API (New) enabled.
+   - The old iCloud folder is an **archive only** after this — don't edit or build in it. (Deleting it syncs the deletion to every machine, so only do that deliberately.)
+   - `npm install` in the clone (builds sharp/resvg/puppeteer natively for this machine).
+   - Fix the hardcoded Node path in `.claude/launch.json` (or point it at plain `node` on PATH); install Playfair Display + Inter system fonts if asset regeneration is anticipated; confirm Vercel dashboard access and that pushes still deploy.
 2. **Verify the site is healthy**: `npm run dev` renders locally; `curl` the live homepage, a city page, and an entry deep URL; check GA4 is receiving data.
-3. **Run `git gc`** — the repo is ~242 MB of loose objects and slow. Do this on one machine only, after iCloud sync has fully settled and while the other machine is idle: gc rewrites most of `.git`, and a concurrent iCloud sync of that rewrite is exactly how conflicted-copy corruption happens.
+3. ~~Run `git gc`~~ — **no longer needed**: the loose-object bloat (~242 MB, 1,633 objects) existed only in the old machine's working copy, which is retired. A fresh clone from GitHub arrives fully packed.
 4. **Re-run the closure audit** (`check-business-status.mjs`) — last run 2026-04-25, and Las Vegas has never been audited. Expect a few new closures; use the replacements workflow.
 5. **Patch the three Las Vegas script gaps** (apply-replacements map, spell-check FILES, validate-jsonld ROUTES) and fix the fetch-photos `.jpg` resume check — four small, well-understood edits.
 6. **Rewrite CLAUDE.md** to match reality (keep the editorial sections verbatim; replace the technical half), so the two context documents stop contradicting each other.

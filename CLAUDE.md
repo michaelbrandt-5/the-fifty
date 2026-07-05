@@ -1,5 +1,7 @@
 # The Fifty — Project Guide
 
+> **Read `CLAUDE_PROJECT_CONTEXT.md` first** — it is the current, fact-checked project handoff and supersedes the technical sections of this file (tech stack, file structure, city count, color tokens), which are stale. The editorial sections below (voice, categories, content rules, quality bar) remain in force.
+
 ## What This Is
 "The Fifty" is an opinionated, editorially curated city guide. Each city gets exactly 50 picks — no more, no less. The brand voice is confident, insider-y, and magazine-quality. Think: if Monocle and Eater had a baby that was raised by a local.
 

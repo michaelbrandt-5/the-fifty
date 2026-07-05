@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "the-fifty-dev",
-      "runtimeExecutable": "/Users/michaelbrandt/local/nodejs/node-v22.15.0-darwin-arm64/bin/node",
-      "runtimeArgs": ["/Users/michaelbrandt/Documents/Claude/Projects/FIfty/node_modules/.bin/vite", "--host"],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--host"],
       "port": 5173
     }
   ]

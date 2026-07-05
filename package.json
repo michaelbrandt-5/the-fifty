@@ -18,8 +18,7 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-helmet-async": "^3.0.0",
-    "react-router-dom": "^7.14.0",
-    "vite-plugin-prerender": "^1.0.8"
+    "react-router-dom": "^7.14.0"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
@@ -29,5 +28,10 @@
     "puppeteer-core": "^24.42.0",
     "sharp": "^0.34.5",
     "vite": "^8.0.8"
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true,
+    "fsevents@2.3.3": true,
+    "puppeteer@24.42.0": true
   }
 }
